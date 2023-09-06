@@ -1,4 +1,4 @@
-import './table.css'
+import '../style/table.css'
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -48,7 +48,7 @@ export function Load(){
       });
     }, []);
 
-    return fillTablewithData(TableData,setdata)
+    return fillTablewithData(data,setdata)
 
 }
 
@@ -119,6 +119,17 @@ function fillTablewithData(datatree,setdata){
   if(datatree === ""){
     return 
   }
+
+  const search_stuff = <div className='searchstuff'>
+                          <div className='searchtext'>Search :</div>
+                          <input onChange={e=>{
+                                const newdata = Search(e.target.value)
+                                setdata(newdata)
+
+                            }} className='searchbar' >
+                            
+                          </input>
+                      </div>
   const headers = columns.map((column) => 
             
               <td className='thitems' onClick={e => {
@@ -129,6 +140,7 @@ function fillTablewithData(datatree,setdata){
               accessor={column.accessor} >{column.label}</td>
             
             );
+        
 
   const contents = datatree.map((items) =>
             <tr className='tablerow'>
@@ -138,21 +150,25 @@ function fillTablewithData(datatree,setdata){
 
                 <td className='column'>
                   <div className='optionsbtbox'>
-                  <button className='optionsbts' onClick={() => openInNewTab(`/details?patientno=${items[0]}`)}>Details</button>
                   <button className='optionsbts' onClick={() => openInNewTab(`/revisit?patientno=${items[0]}`)}> Revisit</button>
                   </div>
 
                 </td>
             </tr>
             )
+        
+    
 
   const table = (
+    <div className='tableholder'>
+    {search_stuff}
     <table className='table'>
     <tr className='tablehead'>{headers}</tr>
     <tbody>
       {contents}
     </tbody>
   </table>
+  </div>
   )
   return (
     table
@@ -162,5 +178,16 @@ function fillTablewithData(datatree,setdata){
 
 export function Search(value){
   console.log(value)
+  if(value === ""){
+    return TableData
+  }
+
+  const newdata = TableData.filter((item) => {
+    return item[0].toLowerCase().includes(value.toLowerCase()) || item[1].toLowerCase().includes(value.toLowerCase()) 
+    || item[2] === parseInt(value) || item[3].toLowerCase().includes(value.toLowerCase())
+  })
+  console.log(newdata)
+  return newdata
+
 
 }

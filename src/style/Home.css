@@ -21,12 +21,12 @@ overflow-y: scroll;
 }
 
 .searchstuff {
-    margin: 2%;
+    margin:10px;
     font-size: 15px;
     display: flex;
     flex-direction: row;
     width :50%;
-    height : 5%;
+    min-height : 1%;
     align-self: center;
     
 }

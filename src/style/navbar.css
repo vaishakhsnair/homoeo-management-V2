@@ -1,0 +1,25 @@
+.Navbar {
+    display: flex;
+    flex-direction: row-reverse;
+    width :98%;
+    margin: 10px;
+    min-height : 40px;
+    align-self: center;
+    background-color: #1e1c3d;
+    border:2px solid white;
+    border-radius: 20px;
+}
+
+.navbt{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap : 15px;
+    height: 80%;
+    align-self: center;
+    margin: 10px;
+    border-radius: 10px;
+    width: 10%;
+    background-color: transparent;
+    color: white;
+}

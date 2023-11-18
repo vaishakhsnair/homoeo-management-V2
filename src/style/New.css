@@ -1,8 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 
-
-
-
 /* App */
 
 .New {
@@ -43,18 +40,7 @@
     width: 95%;
 }
 
-input {
-    border:0;
-    background-color: transparent;
-    color:white;
-    outline: none;
-    display: block;
-    margin: 5px;
-    margin-left: 10px;
-    border-bottom:1px solid white;
-    width : 100% ;
-    font-size: 18px;
-}
+
 select {
     border:0;
     background-color: transparent;
@@ -89,7 +75,7 @@ select {
     flex-direction: column;
     margin: 20px;
     min-width: 70%;
-    min-height: 40px;
+    min-height: 10%;
     align-self: flex-start;
     
 }
@@ -103,7 +89,25 @@ select {
     align-self: flex-start;
     
 }
-textarea    {
+
+.inputs {
+    margin : 10px;
+}
+
+
+.inputbox {
+    border:0;
+    background-color: transparent;
+    color:white;
+    outline: none;
+    display: block;
+    margin: 5px;
+    margin-left: 10px;
+    border-bottom:1px solid white;
+    width : 100% ;
+    font-size: 18px;
+}
+.bigtextarea    {
     border:0;
     background-color: transparent;
     color:white;
@@ -114,5 +118,6 @@ textarea    {
     border:1px solid white;
     width : 95% ;
     font-size: 18px;
-    min-height: 250px; 
+    min-height: 150px; 
 }
+

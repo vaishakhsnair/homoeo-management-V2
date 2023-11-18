@@ -1,8 +1,14 @@
 import '../style/New.css';
 
 import React, { useState } from 'react';
+import Navbar from '../HomeComponents/Navbar';
+import MedsTable from '../components/MedsTable';
+import axios from 'axios';
 
 export default function New() {
+
+    const rowData = [[1,"","",[],"","",1]];
+
     const basicDetails = { 
         name: "",
         age: "",
@@ -18,9 +24,9 @@ export default function New() {
         familyHistory: "",
         pastHistory: "",
         generalities: {
-            appetite: "",
-            thirst: "",
-            stool: "",
+            Appetite: "",
+            Thirst: "",
+            Stool: "",
             desire: "",
             aversion: "",
             intolerance: "",
@@ -50,13 +56,13 @@ export default function New() {
         }
     }
     const regoinalExamination = {
-        regoinalExamination: "",
+        exam: "",
     }
     const repertory = {
-        repertorisation: "",
+        repData: "",
     }
-    const miscellaneous = {
-        miscellaneous: "",
+    const miscinfo = {
+        miscData: "",
     }
 
 
@@ -64,28 +70,71 @@ export default function New() {
     const [complaints, setComplaints] = useState(presentingComplaints);
     const [history, setHistory] = useState(patientHistory);
     const [examination, setExamination] = useState(regoinalExamination);
-    const [repertorisation, setRepertorisation] = useState(repertory);
-    const [misc, setMisc] = useState(miscellaneous);
+    const [repertorisation, setRepertorisation] = useState(repertory );
+    const [misc, setMisc] = useState(miscinfo);
+    const [ data, setdata ] = useState(rowData);
+    
+    function sendAllData() {
+        const dataToSend = {
+            basicDetails: details,
+            presentingComplaints: complaints,
+            patientHistory: history,
+            regionalExamination: examination,
+            repertory: repertorisation,
+            miscellaneous: misc,
+            meds: data
+        }
+        console.log(dataToSend);
+        if(details.name.length === 0){
+            alert('Name is required')
+            return
+        }
+        if(details.age.length === 0){
+            alert('Age is required')
+            return
+        }
+        if(details.phone.length === 0){
+            alert('Phone is required')
+            return
+        }
+        
+        axios.post('/api/v2/newpatient', dataToSend)
+            .then(res => {
+                console.log(res.data)
+                if(res.data.status === 'success'){
+                    alert('Patient Added Successfully')
+                    window.location.href = '/'
+                }
+            }
+                );
+        
+        
 
+    }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        console.log(name, value)
         switch (name) {
             case "name":
             case "age":
             case "phone":
             case "address":
             case "gender":
-                setDetails({ ...details, name: value });
+                setDetails({ ...details, [name]: value });
                 break;
             case "complaints":
                 setComplaints({ ...complaints, presentcomplaint: value });
-            
+                break;
             case "history":
+                setHistory({ ...history, history: value });
+                break;
             case "familyHistory":
+                setHistory({ ...history, familyHistory: value });
+                break;
             case "pastHistory":
-                    setHistory({ ...history, history: value });
-                    break;
+                setHistory({ ...history, pastHistory: value });
+                break;
 
             case "generalities":
                 setHistory({ ...history, generalities: { ...history.generalities, [name]: value } });
@@ -94,13 +143,16 @@ export default function New() {
                 setHistory({ ...history, responseToTreatment: { ...history.responseToTreatment, [name]: value } });
                 break;
             case "regoinalExamination":
-                setExamination({ ...examination, regoinalExamination: value });
+                setExamination({ ...examination, exam: value });
+                console.log(examination);
                 break;
             case "repertorisation":
-                setRepertorisation({ ...repertorisation, repertorisation: value });
+                setRepertorisation({ ...repertorisation, repData: value });
+                console.log(repertorisation);
                 break;
             case "miscellaneous":
-                setMisc({ ...misc, miscellaneous: value });
+                setMisc({ ...misc, miscData : value });
+                console.log(misc);
                 break;
             default:
                 break;
@@ -115,19 +167,19 @@ export default function New() {
             <div className='minititle'> Patient Details</div>
             <div className="inputs">
                 <label>Name</label>
-                <input type="text" name="name" value={details.name} onChange={handleChange} />
+                <input className='inputbox' type="text" name="name" value={details.name} onChange={handleChange} />
             </div>
             <div className="inputs">
                 <label>Age</label>
-                <input type="text" name="age" value={details.age} onChange={handleChange} />
+                <input className='inputbox' type="text" name="age" value={details.age} onChange={handleChange} />
             </div>
             <div className="inputs">
                 <label>Phone</label>
-                <input type="text" name="phone" value={details.phone} onChange={handleChange} />
+                <input className='inputbox' type="text" name="phone" value={details.phone} onChange={handleChange} />
             </div>
             <div className="inputs">
                 <label>Address</label>
-                <input type="text" name="address" value={details.address} onChange={handleChange} />
+                <input className='inputbox' type="text" name="address" value={details.address} onChange={handleChange} />
             </div>
             <div className='inputs'>
                 <label>Gender</label>
@@ -143,7 +195,7 @@ export default function New() {
         <div className="presentingComplaints">
             <div className='minititle'> Presenting Complaints</div>
             <div className="biginputs">
-                <textarea type="text" name="complaints" value={complaints.presentcomplaint} onChange={handleChange} />
+                <textarea type="text" className='bigtextarea' name="complaints" value={complaints.presentcomplaint} onChange={handleChange} />
             </div>
         </div>
     
@@ -151,16 +203,16 @@ export default function New() {
         <div className="patientHistory">
             <div className='minititle'> Patient History</div>
             <div className="biginputs">
-                <textarea type="text" name="history" value={history.history} onChange={handleChange} />
+                <textarea type="text" className='bigtextarea' name="history" value={history.history} onChange={handleChange} />
             </div>
             <div className='miniinputs'>
                 <div className="inputs">
                     <label>Family History</label>
-                    <input type="text" name="familyHistory" value={history.familyHistory} onChange={handleChange} />
+                    <input className='inputbox' type="text" name="familyHistory" value={history.familyHistory} onChange={handleChange} />
                 </div>
                 <div className="inputs">
                     <label>Past History</label>
-                    <input type="text" name="pastHistory" value={history.pastHistory} onChange={handleChange} />
+                    <input className='inputbox' type="text" name="pastHistory" value={history.pastHistory} onChange={handleChange} />
                 </div>
             </div>
                 <div className='minititle'>Generalities</div>
@@ -169,7 +221,7 @@ export default function New() {
                             return (
                                 <div className="inputs">
                                     <label >{item}</label>
-                                    <input type="text" name="generalities" value={patientHistory.generalities.item} onChange={handleChange} />
+                                    <input className='inputbox' type="text" name="generalities" value={patientHistory.generalities.item} onChange={handleChange} />
                                 </div>
                             )
                         })}
@@ -180,7 +232,7 @@ export default function New() {
                                 return (
                                     <div className="inputs">
                                         <label >{item}</label>
-                                        <input type="text" name="responseToTreatment" value={patientHistory.responseToTreatment.item} onChange={handleChange} />
+                                        <input className='inputbox' type="text" name="responseToTreatment" value={patientHistory.responseToTreatment.item} onChange={handleChange} />
                                     </div>
                                 )
                             })}
@@ -189,15 +241,44 @@ export default function New() {
             </div>
         </div>
     
+    const regionalExaminationForm =
+        <div className="regionalExamination">
+            <div className='minititle'> Regional Examination</div>
+            <div className="biginputs">
+                <textarea type="text" className='bigtextarea' name="regoinalExamination" value={regoinalExamination.Examination} onChange={handleChange} />
+            </div>
+        </div>
+    const repertoryForm =
+        <div className="repertory">
+            <div className='minititle'> Repertory</div>
+            <div className="biginputs">
+                <textarea type="text" className='bigtextarea' name="repertorisation" value={repertory.repertorisation} onChange={handleChange} />
+            </div>
+        </div>
+    const miscellaneousForm =
+        <div className="miscellaneous">
+            <div className='minititle'>Miscellaneous</div>
+            <div className="biginputs">
+                <textarea type="text" className='bigtextarea' name="miscellaneous" value={miscinfo.miscellaneous} onChange={handleChange} />
+            </div>
+        </div>
+
     return (
         <div className="App">
-            <div className="title">New Patient</div>
+          
             <div className="New">
+            <Navbar />
+            <div className="title">New Patient</div>
                 <div className='bigbox'>
                 {basicDetailsForm}
                 {presentingComplaintsForm}
                 </div>
                 {patientHistoryForm}
+                {regionalExaminationForm}
+                {repertoryForm}
+                {miscellaneousForm}
+                <MedsTable data={data} setdata={setdata} />
+                <button className='btn btn-primary' onClick={sendAllData}>Submit</button>
             </div>
         </div>
         )

@@ -150,7 +150,9 @@ function fillTablewithData(datatree,setdata){
 
                 <td className='column'>
                   <div className='optionsbtbox'>
-                  <button className='optionsbts' onClick={() => openInNewTab(`/revisit?patientno=${items[0]}`)}> Revisit</button>
+                  <button className='optionsbts' onClick={() => openInNewTab(`/followup?patientno=${items[0]}`)}> Follow Up</button>
+                  <button className='optionsbts' onClick={() => openInNewTab(`/details?patientno=${items[0]}`)}>Details</button>
+
                   </div>
 
                 </td>

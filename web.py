@@ -137,16 +137,16 @@ def api_handler(endpoint,request):
         req = request.get_json()
         if req['request'] == 'meds' :
             if req['type'] == 'list':
-                databaseObject = utils.meds_database_handler.database_handler(request = request)
+                databaseObject = utils.database_handler.meds_database_handler(request)
                 return jsonify({'resp':databaseObject.get_meds_list()})
             elif req['type'] == 'edit':
-                return jsonify({'resp':utils.meds_database_handler.database_handler(request).edit_meds()})
+                return jsonify({'resp':utils.database_handler.meds_database_handler(request).edit_meds()})
             elif req['type'] == 'count':
-                return jsonify({'resp':utils.meds_database_handler.database_handler(request).get_record_count()})
+                return jsonify({'resp':utils.database_handler.meds_database_handler(request).get_record_count()})
             elif req['type'] == 'add':
-                return jsonify({'resp':utils.meds_database_handler.database_handler(request).add_meds()})
+                return jsonify({'resp':utils.database_handler.meds_database_handler(request).add_meds()})
             elif req['type'] == 'delete':
-                return jsonify({'resp':utils.meds_database_handler.database_handler(request).delete_meds()})
+                return jsonify({'resp':utils.database_handler.meds_database_handler(request).delete_meds()})
 
     if endpoint == 'registration': # for new patients
 

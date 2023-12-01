@@ -51,66 +51,75 @@ export function Load(){
     return fillTablewithData(data,setdata)
 
 }
-
-function handlesortClick(accessor){
-  const currentData = TableData
-  if(accessor === "options"){
-    return  currentData;
+function handlesortClick(accessor) {
+  const currentData = [...TableData]; // Create a copy of TableData to avoid modifying the original array
+  if (accessor === "options") {
+    return currentData;
   }
-  const IndexOfItemToSort = Object.keys(SortToggleStatus).indexOf(accessor)
-  console.log(accessor)
-  var ItemToSortObject = {}
-  currentData.forEach(element => {
-    if(accessor === 'date'){
-      var isodate = element[IndexOfItemToSort].split('-').reverse()
-      isodate[0] = `20${isodate[0]}`
-      isodate = isodate.join('-')
-      var date = new Date(isodate)
-      ItemToSortObject[date] = element
-    }else{
-    ItemToSortObject[element[IndexOfItemToSort]] = element
+  const IndexOfItemToSort = Object.keys(SortToggleStatus).indexOf(accessor);
+  console.log(accessor);
+  var ItemToSortObject = {};
+  currentData.forEach((element) => {
+    if (accessor === "date") {
+      var isodate = element[IndexOfItemToSort].split("-").reverse();
+      isodate[0] = `20${isodate[0]}`;
+      isodate = isodate.join("-");
+      var date = new Date(isodate);
+      if (!ItemToSortObject[date]) {
+        ItemToSortObject[date] = [];
+      }
+      ItemToSortObject[date].push(element);
+    } else {
+      if (!ItemToSortObject[element[IndexOfItemToSort]]) {
+        ItemToSortObject[element[IndexOfItemToSort]] = [];
+      }
+      ItemToSortObject[element[IndexOfItemToSort]].push(element);
     }
   });
-  
-  switch (SortToggleStatus[accessor]){
+
+  var orderedkeys;
+  switch (SortToggleStatus[accessor]) {
     case 0:
-      if (accessor === "date"){
-        var orderedkeys = Object.keys(ItemToSortObject).sort(function(a,b){
-          return  new Date(a) - new Date(b);
-        })
-        SortToggleStatus[accessor] = 1
-        break
+      if (accessor === "date") {
+        orderedkeys = Object.keys(ItemToSortObject).sort(function (a, b) {
+          return new Date(a) - new Date(b);
+        });
+        SortToggleStatus[accessor] = 1;
+        break;
       }
-      var orderedkeys = Object.keys(ItemToSortObject).sort()
-      SortToggleStatus[accessor] = 1
-      break
+      orderedkeys = Object.keys(ItemToSortObject).sort();
+      SortToggleStatus[accessor] = 1;
+      break;
     case 1:
-      if (accessor === "date"){
-        var orderedkeys = Object.keys(ItemToSortObject).reverse(function(a,b){
-
-          return new Date(b) - new Date(a) ;
-        })
-        SortToggleStatus[accessor] = 0
-        break
+      if (accessor === "date") {
+        orderedkeys = Object.keys(ItemToSortObject).sort(function (a, b) {
+          return new Date(b) - new Date(a);
+        });
+        SortToggleStatus[accessor] = -1;
+        break;
       }
-      var orderedkeys = Object.keys(ItemToSortObject).reverse()
-      SortToggleStatus[accessor] = 0
-      break
-
+      orderedkeys = Object.keys(ItemToSortObject).sort().reverse();
+      SortToggleStatus[accessor] = -1;
+      break;
+    case -1:
+      if (accessor === "date") {
+        orderedkeys = Object.keys(ItemToSortObject).sort(function (a, b) {
+          return new Date(a) - new Date(b);
+        });
+        SortToggleStatus[accessor] = 0;
+        break;
+      }
+      orderedkeys = Object.keys(ItemToSortObject).sort();
+      SortToggleStatus[accessor] = 0;
+      break;
   }
 
-  const orderedObj = orderedkeys.reduce(
-    (obj, key) => { 
-      obj[key] = ItemToSortObject[key]; 
-      return obj;
-    }, 
-    {}
-  );
+  const orderedData = orderedkeys.reduce((arr, key) => {
+    arr.push(...ItemToSortObject[key]);
+    return arr;
+  }, []);
 
-
-  return Object.values(orderedObj)
-
-
+  return orderedData;
 }
   
 

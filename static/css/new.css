@@ -1,0 +1,331 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+@import url("/static/css/dist/attach.css");
+html {
+  background-color: #363062;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  color: #E9D5DA;
+}
+
+option {
+  background-color: #363062;
+  align-items: center;
+}
+
+#patientnumberspace {
+  display: flex;
+  font-size: 25px;
+  border-bottom: 2px solid #E9D5DA;
+  width: -moz-max-content;
+  width: max-content;
+  margin: 20px;
+}
+
+#uppercontainer {
+  display: flex;
+  margin: 5px;
+  width: 100%;
+}
+#uppercontainer #date {
+  width: 100px;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+#notifspace {
+  position: relative;
+  width: 50%;
+  margin-left: 20%;
+  align-self: center;
+  height: 45px;
+  text-align: center;
+  font-size: 30px;
+  border-radius: 10px;
+  transition: 2s;
+  color: #363062;
+}
+
+.onerror {
+  background-color: rgb(179, 15, 77);
+  color: #FF7C7C;
+  transition: 2s;
+}
+
+.container {
+  width: 100%;
+  height: -moz-max-content;
+  height: max-content;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-basis: auto;
+}
+
+.details {
+  font-family: "Nunito", sans-serif;
+  color: #E9D5DA;
+  font-size: 20px;
+  min-width: 550px;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
+.details #patienttitle {
+  padding-left: 15px;
+  font-family: "Nunito", sans-serif;
+  color: #E9D5DA;
+  font-size: 30px;
+  border-bottom: 2px solid #E9D5DA;
+  width: -moz-max-content;
+  width: max-content;
+}
+.details #basicparent {
+  border: 2px solid #827397;
+}
+.details #genderdiv {
+  display: flex;
+  flex-direction: row;
+}
+.details #gendersel {
+  margin: 10px;
+  align-self: center;
+  text-align: center;
+  position: relative;
+  left: 25%;
+  width: 30%;
+  background-color: transparent;
+  border: 2px solid #827397;
+  outline: 0;
+  color: #E9D5DA;
+  height: 36px;
+  font-size: 18px;
+  padding: 5px;
+  border-radius: 10px;
+}
+.details #genderlabel {
+  align-self: center;
+  position: relative;
+  left: 25%;
+}
+.details #familyhis {
+  padding-left: 5px;
+  border: 2px solid #827397;
+}
+
+.container2 {
+  border: 2px solid #827397;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+  width: 1300px;
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+#toggletitle {
+  display: flex;
+  flex-direction: row;
+}
+#toggletitle #toggle {
+  align-self: center;
+  height: 35px;
+  width: 70px;
+  font-size: 18px;
+  margin-left: 70%;
+  text-align: center;
+  background-color: transparent;
+  outline: transparent;
+  border: 2px solid #E9D5DA;
+  border-radius: 5px;
+  color: #E9D5DA;
+}
+
+.attachmentinput {
+  color: #E9D5DA;
+  border: 2px solid #827397;
+  border-radius: 3px;
+  min-height: 135px;
+  font-family: "Nunito", sans-serif;
+  font-size: 20px;
+  max-width: 100%;
+}
+
+.bigbox {
+  min-height: 350px;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+  min-width: 50%;
+  width: 98%;
+  align-self: center;
+}
+.bigbox .bigboxtitle {
+  width: -moz-max-content;
+  width: max-content;
+  padding-bottom: 5px;
+  font-family: "Nunito", sans-serif;
+  color: #E9D5DA;
+  font-size: 30px;
+  border-bottom: 2px solid #E9D5DA;
+}
+.bigbox .bigboxinput {
+  color: #E9D5DA;
+  border: 2px solid #827397;
+  border-radius: 3px;
+  min-height: 135px;
+  font-family: "Nunito", sans-serif;
+  font-size: 20px;
+  white-space: pre-wrap;
+}
+
+#prescriptions {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  color: #E9D5DA;
+  border: 2px solid #827397;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+  font-family: "Nunito", sans-serif;
+}
+#prescriptions #perscriptiontitle {
+  position: relative;
+  left: 2%;
+  font-size: 30px;
+  border-bottom: 2px solid #E9D5DA;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 5px;
+}
+#prescriptions #perscriptioninput {
+  position: relative;
+  align-self: center;
+  border-bottom: 2px solid #E9D5DA;
+  width: 98%;
+  height: 30px;
+  background-color: transparent;
+  border: transparent;
+  border-bottom: 2px solid #E9D5DA;
+}
+
+.lilboxinputs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border: 2px solid #827397;
+}
+
+#pershisinputs {
+  max-height: -moz-fit-content5;
+  max-height: fit-content5;
+  flex-wrap: wrap;
+}
+
+#tablediv {
+  display: flex;
+  flex-direction: row;
+}
+
+#table {
+  position: relative;
+  border: 2px solid #827397;
+  width: 98%;
+  align-self: center;
+  text-align: center;
+}
+#table .medsinputdiv {
+  width: 98%;
+}
+
+.medsentry {
+  border: 2px solid #827397;
+  display: table;
+  width: 98%;
+}
+.medsentry .removebt {
+  display: table-cell;
+  outline: 0;
+  text-align: center;
+  width: 20%;
+}
+.medsentry .medsentrytext {
+  display: table-cell;
+  width: 80%;
+}
+
+.activecell {
+  border: 2px solid white;
+  position: relative;
+}
+
+#activeautofill {
+  border: 2px solid #E9D5DA;
+  position: absolute;
+  width: 99%;
+  overflow-y: auto;
+  min-height: 30px;
+  max-height: 90px;
+  background-color: rgb(121, 35, 121);
+  display: flex;
+  flex-direction: column;
+  color: #E9D5DA;
+}
+
+.autofilloption {
+  border: 1px solid white;
+  color: #E9D5DA;
+}
+
+.autofilloption:hover {
+  background-color: azure;
+  color: #827397;
+}
+
+#addrow {
+  margin-left: 5px;
+  background-color: transparent;
+  outline: 0;
+  border: 2px solid #827397;
+  color: #E9D5DA;
+  height: 30px;
+}
+
+#addrow:active {
+  background-color: #827397;
+}
+
+td {
+  border: 2px solid #827397;
+}
+
+#totalcount {
+  font-size: 30px;
+  width: 200px;
+  text-align: center;
+}
+
+.submitdiv {
+  display: flex;
+  flex-direction: column;
+  height: 50px;
+  width: 100%;
+}
+.submitdiv #submit {
+  margin-top: 10px;
+  align-self: flex-end;
+  margin-right: 20px;
+  height: 35px;
+  width: 100px;
+  font-size: 20px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: transparent;
+  outline: transparent;
+  border: 2px solid #E9D5DA;
+  border-radius: 5px;
+  color: #E9D5DA;
+}
+.submitdiv #submit:active {
+  background-color: #E9D5DA;
+  color: #827397;
+}/*# sourceMappingURL=new.css.map */

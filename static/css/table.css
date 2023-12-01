@@ -1,0 +1,74 @@
+html {
+  background-color: rgb(141, 141, 141);
+}
+
+.tablespace {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#totaldiv {
+  font-size: 30px;
+}
+
+#table {
+  width: 100%;
+  border: 2px solid grey;
+}
+#table .tablerow {
+  height: 30px;
+  border: 2px solid grey;
+}
+#table .activecell {
+  border: 2px solid white;
+  position: relative;
+}
+#table #activeautofill {
+  border: 2px solid yellow;
+  position: absolute;
+  width: 99%;
+  min-height: 30px;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+  background-color: darkgoldenrod;
+  display: flex;
+  flex-direction: column;
+}
+#table .autofilloption {
+  border: 1px solid white;
+}
+#table .autofilloption:hover {
+  background-color: azure;
+}
+#table .medsentry {
+  border: 2px solid blue;
+  display: table;
+  width: 100%;
+}
+#table .medsentry .removebt {
+  display: table-cell;
+  width: 20%;
+}
+#table .medsentry .medsentrytext {
+  display: table-cell;
+  width: 80%;
+}
+#table .medsinputdiv {
+  width: 98%;
+  border: transparent;
+  outline: 0;
+  border-bottom: 2px solid grey;
+}
+#table .stuffinput {
+  outline: 0;
+  width: 98%;
+  height: 100%;
+  background-color: transparent;
+  border: 2px solid grey;
+}
+
+td {
+  border: 2px solid grey;
+  text-align: center;
+}/*# sourceMappingURL=table.css.map */

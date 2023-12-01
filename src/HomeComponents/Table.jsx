@@ -34,7 +34,7 @@ export function Load(){
   const [ data, setdata ] = useState('');
 
     useEffect(() => {
-      axios.post('/api/v2/getpatientlist', { request:"list" })
+      axios.post('/api/details', { request:"list" })
       .then(response => {
         response = response.data.data
         if (response.length !== 0){ 

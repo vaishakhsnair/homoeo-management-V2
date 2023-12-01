@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Followup</title>
+    <link rel="stylesheet" href="/static/css/dist/followup.css">
+
+</head>
+<body>
+
+    <div id="patientnumbox">
+        <div>Patient No : </div><div id="patientno">{{patientnum}}</div>
+    </div>
+
+    <div id="container0">
+
+            <div id="primcontainer">
+                <div id="basic"></div>
+                <div id="genderdiv">
+                    <label for="gendersel" id="genderlabel">Gender * :</label>
+                    <select id="gendersel" title="gender" name="Gender">
+                        <option  value="Male">Male</option>
+                        <option  value="Female">Female</option>
+                        <option  value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div id="prevdata"></div>
+
+    </div>
+
+    <div id="container1">
+
+        <div id='presentingcomplaints'>
+            <p id="complaintstitle" class="bigboxtitle">Presenting Complaints</p>
+            <pre id="complaintinput" class="bigboxinput" contenteditable></pre>
+        </div>
+    
+        <div id="history" class="history">
+            <p id="historytitle" class="bigboxtitle">History of Presenting Complaints</p>
+            <pre id="historyinput" class="bigboxinput" ></pre>
+        </div>
+
+        <div class="bigbox">
+            <p class="bigboxtitle">Attachments</p>
+            <div id="attachments" class="attachmentinput" ></div>
+        </div>
+
+        
+        <div id="tablediv">
+            <table id="table">
+                <tr>
+                    <th style="width: 3%;">Sl No</th>
+                    <th style="width: 5%;">Size</th>
+                    <th style="width: 10%;">Medium</th>
+                    <th style="width: 15%;">Meds</th>
+                    <th style="width: 15%;">Dosage</th>
+                    <th style="width: 2%;">Cost</th>
+                    <th style="width: 2%;">Multiply</th>
+                    <th style="width: 2%;">Remove</th>
+                    <th style="width: 2%;">Duplicate</th>
+                </tr>
+    
+            </table>
+            <button id="addrow" onclick="addrow()">Add</button>
+        </div>
+          <center> <div id="totalcount">Total:<div id="totalcost"></div> </center>
+
+        <div id="submitbox"><button id='submit' class="submitbt" type="button">Submit</button></div>
+    </div>
+
+
+
+    
+</body>
+<script src="/static/js/attach.js"></script>
+
+<script src="/static/js/followup.js"></script>
+<script src="/static/js/table.js"></script>
+
+
+</html>

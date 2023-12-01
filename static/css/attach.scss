@@ -1,0 +1,44 @@
+
+
+$primary:#E9D5DA;
+$secondary:#827397;
+$background:#363062;
+
+#attachments{
+    display: flex;
+    flex-direction: column;
+    padding:12px;
+    margin:12px;
+
+    #attachmentviewer{
+        margin-top: 12px;
+
+        border: 2px solid $primary;
+        height: max-content;
+    }
+
+    .attachmentbt{
+        margin-top: 12px;
+        margin-left: 50%;
+        width: 100px;
+        background-color: transparent;
+        outline: 0;
+        color: $primary;
+        border: 2px solid $primary;
+        border-radius: 2px;
+
+    }
+
+    .attachmentembeds{
+        width: 98%;
+        height: 500px;
+    }
+
+    #attachmentlist{
+        margin-top: 10px;
+       // border: 2px solid $primary;
+        display: flex;
+        flex-direction: column;
+    }
+
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Homoeo Bois - Details</title>
+   <link rel="stylesheet" href="/static/css/dist/new.css">
+   <link rel="stylesheet" href="/static/css/dist/followup.css">
+
+</head>
+<body>
+
+    <div id="uppercontainer">
+        <div id="patientnumberspace" >
+            <div>Patient Number:</div><div id="patientno">{{patientnum}}</div>
+        </div>
+        <div id="date">Date : <div id="datein">{{date}}</div></div>
+        <div id="notifspace"></div>
+    </div>
+    
+
+
+
+<div class="container">
+    <div id="details" class="details">
+        
+            <div id="basicparent">
+                <div id="basic" class="basic">
+                    <p id="patienttitle">Patient Details</p>
+
+                </div>
+                <div id="genderdiv">
+                    <label for="gendersel" id="genderlabel">Gender * :</label>
+                    <select id="gendersel" title="gender" name="Gender">
+                        <option  value="Male">Male</option>
+                        <option  value="Female">Female</option>
+                        <option  value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+        
+        <div id="familyhiscontainer">
+        <p id="patienttitle">Family History</p>
+        <div id="familyhis"></div>
+        </div>
+
+    </div>
+    
+
+    <div class="container2">
+        <div id="complaints" class="bigbox">
+            <p  class="bigboxtitle">Previous Prescriptions</p>
+
+            <div id='prevdata'>
+            </div>
+        
+            <div id="history" class="history">
+                <p id="historytitle" class="bigboxtitle">History of Presenting Complaints</p>
+                <pre id="historyinput" class="bigboxinput" contenteditable></pre>
+            </div>
+        
+            <div id="past">
+                <p id="pasttitle" class="bigboxtitle">Past History</p>
+                <pre id="pastinput" class="bigboxinput" contenteditable></pre>
+            </div>
+
+            <div id="repertory">
+                <p id="repertorytitle" class="bigboxtitle">Repertorization</p>
+                <pre id="repertoryinput" class="bigboxinput" contenteditable></pre>
+            </div>
+
+            <div id="mind">
+                <p id="mindtitle" class="bigboxtitle">Mind Generals</p>
+                <pre id="mindgeninput" class="bigboxinput" contenteditable></pre>
+
+            </div>
+
+
+            <div class="bigbox">
+                <p class="bigboxtitle">Attachments</p>
+                <div id="attachments" class="attachmentinput" ></div>
+            </div>
+
+        </div>  
+
+        
+    </div>
+
+
+<div class="bigbox" id="pershisdiv">
+    <p id="pershistorytitle" class="bigboxtitle">Personal History</p>
+    <div class="lilboxinputs" id="pershisinputs"></div>
+</div>
+
+<div class="bigbox" id="generalitydiv">
+    <p id="generalitytitle" class="bigboxtitle">Generalities</p>
+    <div class="lilboxinputs" id="generalityinputs"></div>
+</div>
+
+<div class="bigbox" id="respto">
+    <p id="resptotitle" class="bigboxtitle">Response To</p>
+    <div class="lilboxinputs" id="resptoinputs"></div>
+</div>
+
+<div class="bigbox" id="regi">
+    <p id="regititle" class="bigboxtitle">Regionals</p>
+    <div class="lilboxinputs" id="regiinputs"></div>
+</div>
+
+
+<div class="submitdiv">
+    <button type="button" id="submit" onclick="sendall()">Submit</button>
+</div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"> </script>
+<script src="/static/js/attach.js"></script>
+
+<script src="/static/js/details.js"></script>
+<script src="/static/js/table.js">
+       //using this html as template so startup script is from server side
+</script>
+
+</body>
+</html>

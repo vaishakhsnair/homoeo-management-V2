@@ -1,0 +1,402 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+
+
+$primary:#E9D5DA;
+$secondary:#827397;
+$background:#363062;
+
+@import url('/static/css/dist/attach.css');
+
+
+
+html{
+  background-color: $background;
+}
+
+body{
+  font-family: 'Nunito', sans-serif;
+  color: $primary;
+}
+
+option {
+  background-color: $background;
+  align-items: center;
+
+}
+
+
+#patientnumberspace{
+  display: flex;
+  font-size: 25px;
+  border-bottom: 2px solid $primary;
+  width: max-content;
+  margin: 20px;
+  
+}
+
+#uppercontainer{
+  display: flex;
+  margin: 5px;
+  width: 100%;
+
+
+  #date{
+   // text-align: center;
+    width: 100px;
+    width:max-content;
+  //  border: 2px solid $primary;
+    
+  }
+}
+
+#notifspace{
+  position: relative;
+  //border: 2px solid $secondary;
+  width: 50%;
+  margin-left: 20%;
+  align-self: center;
+  height: 45px;
+  text-align: center;
+  font-size: 30px;
+  border-radius: 10px;
+  transition: 2s;
+  color: $background;
+
+}
+
+.onerror{
+  background-color: rgb(179, 15, 77);
+  color:#FF7C7C;
+  transition: 2s;
+}
+
+
+.container{
+    width:100%;
+    height: max-content;
+    //border: 2px solid $primary;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-basis: auto;
+
+  }
+
+.details{
+
+    
+    font-family: 'Nunito', sans-serif;
+    color: #E9D5DA;
+    font-size: 20px;
+    //border:2px solid white;
+    min-width:550px;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+
+
+
+    #patienttitle{
+      padding-left : 15px;
+      font-family: 'Nunito', sans-serif;
+      color: #E9D5DA;
+      font-size: 30px;
+      border-bottom:2px solid #E9D5DA;
+      width : max-content;
+  }
+
+  #basicparent {
+    border: 2px solid $secondary;
+  }
+
+  #genderdiv{
+    display: flex;
+    flex-direction: row;
+  }
+
+  #gendersel{
+    margin: 10px;
+    align-self: center;
+    text-align: center;
+    position: relative;
+    left: 25%;
+    width: 30%;
+    background-color: transparent;
+    border:2px solid $secondary;
+    outline: 0;
+    color: $primary;
+    height: 36px;
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 10px;
+
+  }
+
+  #genderlabel{
+    align-self: center;
+    position: relative;
+    left: 25%;
+  }
+
+  #familyhis{
+    padding-left: 5px;
+    border: 2px solid $secondary;
+
+  }
+}
+
+
+.container2 {
+  border: 2px solid $secondary;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+  width: 1300px;
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+ #toggletitle{
+  display: flex;
+  flex-direction: row;
+
+  #toggle {
+    align-self: center;
+    height: 35px;
+    width: 70px;
+    font-size: 18px;
+    margin-left: 70%;
+    text-align: center;
+      background-color: transparent;
+    outline: transparent;
+    border: 2px solid $primary;
+    border-radius: 5px;
+    color: $primary;
+  }
+ } 
+
+
+ .attachmentinput {
+  color: #E9D5DA;
+  border: 2px solid $secondary;
+  border-radius: 3px;
+  min-height: 135px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 20px;
+  max-width: 100%;
+}
+
+.bigbox {
+  min-height: 350px;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+  min-width: 50%;
+  width:98%;
+  align-self: center;
+
+
+
+  .bigboxtitle {
+    width:max-content;
+    padding-bottom : 5px;
+    font-family: 'Nunito', sans-serif;
+    color: #E9D5DA;
+    font-size: 30px;
+    border-bottom:2px solid #E9D5DA;
+  }
+
+  .bigboxinput {
+    color: #E9D5DA;
+    border: 2px solid $secondary;
+    border-radius: 3px;
+    min-height: 135px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    white-space: pre-wrap;
+
+  }
+}
+
+
+
+
+
+
+#prescriptions{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  color: $primary;
+  border: 2px solid $secondary;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+  font-family: 'Nunito', sans-serif;
+
+  #perscriptiontitle{
+    position: relative;
+    left: 2%;
+    font-size: 30px;
+    border-bottom: 2px solid $primary;
+    width: max-content;
+    padding: 5px;
+
+  }
+
+  #perscriptioninput{
+      position: relative;
+      align-self: center;
+      border-bottom: 2px solid $primary;
+      width: 98%;
+      height: 30px;
+      background-color: transparent;
+      border:transparent;
+      border-bottom: 2px solid $primary;
+
+
+ }
+ 
+}
+
+
+.lilboxinputs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border:2px solid $secondary
+}
+
+#pershisinputs {
+  max-height: -moz-fit-content+5;
+  max-height:fit-content+5;
+  flex-wrap: wrap;
+}
+
+#tablediv{
+  display: flex;
+  flex-direction: row;
+
+}
+
+#table{
+  position: relative;
+  border:2px solid $secondary;
+  width: 98%;
+  align-self: center;
+
+  text-align: center;
+
+  .medsinputdiv{
+    width: 98%;
+  }
+
+}
+
+.medsentry{
+  border :2px solid $secondary;
+  display: table;
+  width:98%  ;
+
+  .removebt{
+      display: table-cell;
+      outline:0;
+      text-align: center;
+
+      width: 20%;
+  }
+
+  .medsentrytext{
+      display: table-cell;
+  
+      width:80%
+  }
+}
+
+.activecell{
+  border:2px solid white;
+  position: relative;
+}
+
+#activeautofill{
+  border: 2px solid $primary;
+  position:absolute;
+  width:99%;
+  overflow-y: auto;
+  min-height: 30px;
+  max-height: 90px;
+  background-color: rgb(121, 35, 121);
+  display: flex;
+  flex-direction: column;
+  color: $primary;
+}
+
+.autofilloption{
+  border: 1px solid white;
+  color: $primary;
+}
+
+.autofilloption:hover{
+  background-color: azure;
+  color: $secondary;
+}
+
+
+#addrow{
+  margin-left: 5px;
+  background-color: transparent;
+  outline: 0;
+  border: 2px solid $secondary;
+  color: $primary;
+  height: 30px;
+
+
+}
+
+#addrow:active{
+  background-color: $secondary;
+}
+
+td{
+  border: 2px solid $secondary;
+}
+
+#totalcount{
+  font-size: 30px;
+  width: 200px;
+  text-align: center;
+}
+
+.submitdiv {
+display: flex;
+flex-direction: column;
+height: 50px;
+width: 100%;
+
+
+#submit {
+  margin-top: 10px;
+  align-self: flex-end;
+  margin-right: 20px;
+  height: 35px;
+  width: 100px;
+  font-size: 20px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: transparent;
+  outline: transparent;
+  border: 2px solid $primary;
+  border-radius: 5px;
+  color: $primary;
+
+}
+
+#submit:active {
+  background-color: $primary;
+  color: $secondary;
+}
+
+
+
+}
+
+
+

@@ -1,0 +1,92 @@
+$primary:#E9D5DA;
+$secondary:#827397;
+$background:#363062;
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+
+body {
+    background-color: $background;
+    color: $primary;
+    font-family: 'Nunito', sans-serif;}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    //align-items: center;
+    min-width: 98vw;
+}
+
+.titletext{
+    font-size: 30px ;
+    border-bottom: 2px solid $primary;
+    width: fit-content;
+    padding-top: 5%;
+}
+
+
+.container2 {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid $secondary;
+    width: 48%;
+    font-size: 20px;
+    align-items: center;
+    max-height: 98vh;
+    overflow-x:hidden; 
+    overflow-y:auto;
+    margin: 20px;
+    .inputs{
+        margin-left: 10px;
+        font-size: 15px;
+        color: $primary ;
+        outline: 0;
+        background-color: transparent;
+        border: 0;
+        width: 500px;
+        border-bottom: 2px solid $primary;
+    }
+
+    .buttons{
+        background-color: transparent;
+        outline: 0;
+        border: 2px solid $secondary;
+        color: $primary;
+        animation-duration: 0.5s;
+
+    }
+
+    .buttons:active {
+        background-color:$secondary;
+    }
+
+
+
+}
+
+.outputbox{
+    border: 2px solid $primary;
+    margin-top: 20px;
+    width: 90%;
+
+
+
+
+}
+
+
+.indicationeditcontainer{
+    display: flex;
+    width: 100%;
+
+}
+
+th{
+    text-align: center;
+    border-bottom:1px solid $primary;
+
+}
+
+td{
+    text-align: center;
+    border: 1px solid $primary;
+}

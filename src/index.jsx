@@ -7,6 +7,7 @@ import {
 import './style/index.css';
 import Home from './pages/Home';
 import New from './pages/New';
+import Revisit from './pages/Revisit';
 
 
 const router = createBrowserRouter([
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
     element: <Home />,
   },{
     path: "/revisit",
-    element:<Home />,
+    element:<Revisit />,
   },
   {
     path: "/new",

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Homoeo Bois - New Patient</title>
+   <link rel="stylesheet" href="/static/css/dist/new.css">
+</head>
+<body>
+
+<div id="uppercontainer">
+    <div id="patientnumberspace" >
+        <div>Patient Number:</div><div id="patientnum">{{patientnum}}</div>
+    </div>
+    <div id="date">Date : <div id="datein">{{date}}</div></div>
+    <div id="notifspace"></div>
+</div>
+
+
+
+<div class="container">
+    <div id="details" class="details">
+        
+            <div id="basicparent">
+                <div id="basic" class="basic">
+                    <p id="patienttitle">Patient Details</p>
+
+                </div>
+                <div id="genderdiv">
+                    <label for="gendersel" id="genderlabel">Gender * :</label>
+                    <select id="gendersel" title="gender" name="Gender">
+                        <option  value="Male">Male</option>
+                        <option  value="Female">Female</option>
+                        <option  value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+        
+        <div id="familyhiscontainer">
+        <p id="patienttitle">Family History</p>
+        <div id="familyhis"></div>
+        </div>
+
+    </div>
+    
+
+    <div class="container2">
+        <div id="complaints" class="bigbox">
+            <div id='presentingcomplaints'>
+                <div id="toggletitle"><p id="complaintstitle" class="bigboxtitle">Presenting Complaints</p><button type="button" onclick='toggleextras()' id="toggle">More</button></div>
+                <pre id="complaintinput" class="bigboxinput" contenteditable></pre>
+            </div>
+        
+            <div id="history" class="history">
+                <p id="historytitle" class="bigboxtitle">History of Presenting Complaints</p>
+                <pre id="historyinput" class="bigboxinput" contenteditable></pre>
+            </div>
+        
+            <div class="bigbox" style="height:max-content ;">
+                <p class="bigboxtitle">Attachments</p>
+                <div id="attachments" class="attachmentinput"></div>
+            </div>
+
+            <div id="past">
+                <p id="pasttitle" class="bigboxtitle">Past History</p>
+                <pre id="pastinput" class="bigboxinput" contenteditable></pre>
+            </div>
+
+            <div id="repertory">
+                <p id="repertorytitle" class="bigboxtitle">Repertorization</p>
+                <pre id="repertoryinput" class="bigboxinput" contenteditable></pre>
+
+            </div>
+
+            <div id="mind">
+                <p id="mindtitle" class="bigboxtitle">Mind Generals</p>
+                <pre id="mindgeninput" class="bigboxinput" contenteditable></pre>
+
+            </div>
+
+        </div>  
+
+        
+    </div>
+
+
+<div class="bigbox" id="pershisdiv">
+    <p id="pershistorytitle" class="bigboxtitle">Personal History</p>
+    <div class="lilboxinputs" id="pershisinputs"></div>
+</div>
+
+<div class="bigbox" id="generalitydiv">
+    <p id="generalitytitle" class="bigboxtitle">Generalities</p>
+    <div class="lilboxinputs" id="generalityinputs"></div>
+</div>
+
+<div class="bigbox" id="respto">
+    <p id="resptotitle" class="bigboxtitle">Response To</p>
+    <div class="lilboxinputs" id="resptoinputs"></div>
+</div>
+
+<div class="bigbox" id="regi">
+    <p id="regititle" class="bigboxtitle">Regionals</p>
+    <div class="lilboxinputs" id="regiinputs"></div>
+</div>
+
+
+<div id="prescriptions" class="bigbox">
+    <p id="prescriptionstitle" class="bigboxtitle">Perscriptions</p>
+    <div id="tablediv">
+        <table id="table">
+            <tr>
+                <th style="width: 3%;">Sl No</th>
+                <th style="width: 5%;">Size</th>
+                <th style="width: 10%;">Medium</th>
+                <th style="width: 15%;">Meds</th>
+                <th style="width: 15%;">Dosage</th>
+                <th style="width: 2%;">Cost</th>
+                <th style="width: 2%;">Multiply</th>
+                <th style="width: 2%;">Remove</th>
+                <th style="width: 2%;">Duplicate</th>
+            </tr>
+
+        </table>
+        <button id="addrow" onclick="addrow()">Add</button>
+    </div>
+   <center> <div id="totalcount">Total :<div id="totalcost"></div> </div></center>
+</div>
+
+
+<div class="submitdiv">
+    <button type="button" id="submit" onclick="sendall()">Submit</button>
+</div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"> </script>
+
+
+<script src="/static/js/attach.js"></script>
+<script src="/static/js/mew.js"></script>
+<script src="/static/js/table.js"></script>
+
+
+</body>
+</html>

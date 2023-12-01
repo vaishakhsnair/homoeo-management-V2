@@ -1,0 +1,31 @@
+#attachments {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  margin: 12px;
+}
+#attachments #attachmentviewer {
+  margin-top: 12px;
+  border: 2px solid #E9D5DA;
+  height: -moz-max-content;
+  height: max-content;
+}
+#attachments .attachmentbt {
+  margin-top: 12px;
+  margin-left: 50%;
+  width: 100px;
+  background-color: transparent;
+  outline: 0;
+  color: #E9D5DA;
+  border: 2px solid #E9D5DA;
+  border-radius: 2px;
+}
+#attachments .attachmentembeds {
+  width: 98%;
+  height: 500px;
+}
+#attachments #attachmentlist {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}/*# sourceMappingURL=attach.css.map */

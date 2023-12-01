@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Repertory</title>
+    <link rel="stylesheet" href="/static/css/dist/repertory.css">
+</head>
+<body>
+    <div class="container">
+        <div class='container2' id="repertorycontainer">
+
+            <div class="titletext">Repertory</div>
+
+                    <div id="repertoryinner">
+                        <input type="text" id="repertoryinput" class='inputs' asker = 'repertory' placeholder="Indication"></input>
+                        <button id="repertorysubmit" class="buttons" type="submit">Go</button>
+                    </div>
+                    <table class="outputbox" hidden>
+                        <tbody id="repertoryoutput" >
+                            <tr id="headrow">
+                                <th style="width: 10%;">Serial</th>
+                                <th style="width: 30%;">Medicine Name</th>
+                                <th style="width: 60%;">Indication</th>
+                            </tr>
+                        </tbody>
+                    </table>
+        </div>
+
+        <div class='container2' id="materiamedica">
+            <div class="titletext">Materia Medica</div>
+
+                    <div id="medicainner">
+                        <input type="text" id="medicainput" class="inputs" asker = 'medica' placeholder="Med Name"></input>
+                        <button id="medicasubmit" class="buttons" type="submit">Go</button>
+                    </div>
+                    <table class="outputbox" hidden>
+                        <tbody id="medicaoutput" >
+                            <tr id="headrow">
+                                <th style="width: 10%;">Serial</th>
+                                <th style="width: 30%;">Medicine Name</th>
+                                <th style="width: 60%;">Indication</th>
+                            </tr>
+                        </tbody>
+                    </table>
+
+        </div>
+    </div>
+
+</body>
+<script src="/static/js/repertory.js"></script>
+</html>

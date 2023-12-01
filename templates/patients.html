@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patients</title>
+    <link rel="stylesheet" href="/static/css/dist/patients.css">
+
+</head>
+<body>
+<div id="topbar">
+    <a class="topbarbt" href="/mmrp">MMRP</a>
+    <a class="topbarbt" href="/new">NEW</a>
+    <a class="topbarbt" href="/database">DATABASE</a>
+
+</div>
+<div class="titles">Patients</div>
+
+<div id="searchcontainer">
+
+    <div>
+        <label for="searchbar">Search : </label>
+        <input type="text" placeholder="Search by Name,Patient No,Phone No..." id="searchbar">
+    </div>
+
+</div>
+
+<div id="tablecontainer">
+
+    <table id="outputbox">
+            <tr id="headrow">
+                <th style="width: 10%;" id="pno">Patient No</th>
+                <th style="width: 20%;" id="na">Name</th>
+                <th style="width: 20%;" id="ph">Phone No</th>
+                <th style="width: 10%;" id="date">Last Visit</th>
+                <th style="width: 10%;">Options</th>
+            </tr>
+    </table>
+
+</div>
+    
+</body>
+<script src="/static/js/patients.js"></script>
+</html>

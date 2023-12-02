@@ -29,7 +29,6 @@ html {
   position: absolute;
   width: 99%;
   min-height: 30px;
-  max-height: -moz-fit-content;
   max-height: fit-content;
   background-color: darkgoldenrod;
   display: flex;

@@ -9,13 +9,13 @@ body {
   display: flex;
   font-size: 25px;
   border-bottom: 2px solid #E9D5DA;
-  width: -moz-max-content;
   width: max-content;
 }
 
 #container0 {
   display: flex;
   width: 100%;
+  flex-direction: row;
 }
 
 #primcontainer {
@@ -23,15 +23,12 @@ body {
   display: flex;
   flex-direction: column;
   border: 2px solid #E9D5DA;
-  width: -moz-max-content;
   width: max-content;
   justify-content: center;
-  height: -moz-fit-content;
   height: fit-content;
 }
 #primcontainer #basicInfo {
   margin-top: 10px;
-  width: -moz-max-content;
   width: max-content;
 }
 #primcontainer #genderdiv {
@@ -62,13 +59,13 @@ body {
 
 #prevdata {
   margin: 10px;
-  height: -moz-max-content;
-  height: max-content;
   width: 98%;
+  height: 70vh;
   border: 1px solid #E9D5DA;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
 }
 
 .prevdatacontainer {
@@ -86,7 +83,6 @@ body {
   font-size: 20px;
   margin-top: 10px;
   margin-bottom: 20px;
-  height: -moz-max-content;
   height: max-content;
 }
 
@@ -97,7 +93,6 @@ body {
 
 .prevtextcomplaint {
   display: table-cell;
-  height: -moz-max-content;
   height: max-content;
   padding-left: 2px;
 }
@@ -127,7 +122,6 @@ td {
 }
 
 .bigboxtitle {
-  width: -moz-max-content;
   width: max-content;
   padding-bottom: 5px;
   font-family: "Nunito", sans-serif;

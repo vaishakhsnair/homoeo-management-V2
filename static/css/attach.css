@@ -7,7 +7,6 @@
 #attachments #attachmentviewer {
   margin-top: 12px;
   border: 2px solid #E9D5DA;
-  height: -moz-max-content;
   height: max-content;
 }
 #attachments .attachmentbt {

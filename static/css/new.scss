@@ -77,7 +77,6 @@ option {
     height: max-content;
     //border: 2px solid $primary;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     flex-basis: auto;
 
@@ -90,10 +89,10 @@ option {
     color: #E9D5DA;
     font-size: 20px;
     //border:2px solid white;
-    min-width:550px;
     max-width: -moz-fit-content;
     max-width: fit-content;
-
+    display: flex;
+    flex-direction: column;
 
 
     #patienttitle{
@@ -105,8 +104,10 @@ option {
       width : max-content;
   }
 
+
   #basicparent {
     border: 2px solid $secondary;
+    width: fit-content;
   }
 
   #genderdiv{
@@ -145,15 +146,20 @@ option {
   }
 }
 
+.container0{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+ // border:2px solid $primary;
+}
+
 
 .container2 {
   border: 2px solid $secondary;
   max-height: -moz-fit-content;
   max-height: fit-content;
-  width: 1300px;
-  margin-left: 15px;
-  display: flex;
-  flex-direction: column;
+  width: 70%;
+
 }
 
  #toggletitle{
@@ -393,6 +399,7 @@ width: 100%;
   background-color: $primary;
   color: $secondary;
 }
+
 
 
 

@@ -219,6 +219,126 @@ function fillpage(div,formdata){
 
 
 
+function fillprevdata(complaints){
+
+  var prevdatadiv = document.getElementById('prevdata')
+
+  Object.keys(complaints).reverse().forEach(date => {
+      var complaint = complaints[date]['complaintinput']
+      var prescriptions = complaints[date]['prescriptions']   
+
+      var container = document.createElement('div')
+      container.setAttribute('class','prevdatacontainer')
+
+      var textcontainer = document.createElement('div')
+      textcontainer.setAttribute('class','prevdatatext')
+
+
+      var  datecontainer = document.createElement('div')
+      datecontainer.setAttribute('class','prevtextdate')
+
+      var complaintcontainer = document.createElement('div')
+      complaintcontainer.setAttribute('class','prevtextcomplaint')
+      
+
+      datecontainer.textContent = `Date : ${date}`
+      complaintcontainer.textContent = `Complaint : ${complaint}`
+
+      textcontainer.appendChild(datecontainer)
+      textcontainer.appendChild(complaintcontainer)
+
+      var duplicatebt = document.createElement('button')
+      duplicatebt.setAttribute('class','duplicatepresbt')
+      duplicatebt.setAttribute('id',date)
+      duplicatebt.textContent  = 'Duplicate'
+
+      textcontainer.appendChild(duplicatebt)
+
+
+      container.appendChild(textcontainer)
+
+
+      var table = document.createElement('table')        
+      table.setAttribute('class','prevdatatable')
+
+      table.innerHTML = tablehtml
+      var finalcost = 0
+      Object.keys(prescriptions).forEach(rows => {
+
+          var row = table.insertRow(table.children[0].children.length)
+
+          Object.keys(prescriptions[rows]).forEach(column =>{
+              var currentColumn = prescriptions[rows][column]
+
+              switch(column){
+                  case 'meds':
+                      var cell = row.insertCell(2)
+                      cell.setAttribute('class','prevdatacell')
+
+                      for(i = 0;i<currentColumn.length;i++){
+                          const serial = currentColumn[i]
+
+                          xhr = sendpost('/api/inventory',{"request":'reverse',"column":column,"serial":serial})
+                          xhr.onload = function(){
+                              resp = JSON.parse(this.responseText).data
+                              console.log('column : ',column,'Value :',resp,'Serial :',serial)
+                              var textbox = document.createElement('div')
+                              textbox.textContent = resp
+                              cell.appendChild(textbox)
+                          }
+                      }
+                      break
+
+                  case 'dos':
+                      var cell = row.insertCell(3)
+                      cell.textContent = currentColumn
+                      break
+                  
+                  case 'multiply':
+                      var cell = row.insertCell(4)
+                      cell.textContent = currentColumn
+                      break
+
+
+                  default:
+                      var index = Object.keys(prescriptions[rows]).indexOf(column)
+                      var cell = row.insertCell(index)
+                      xhr = sendpost('/api/inventory',{"request":'reverse',"column":column,"serial":currentColumn[0]})
+                      xhr.onload = function(){
+                          cell.textContent = JSON.parse(this.responseText).data
+                      }
+                      break
+
+                      
+              }
+
+          })
+
+          if(Object.keys(complaints[date]).includes('totalcost')){
+              var totalcost = complaints[date]['totalcost']
+              var costcell = row.insertCell(5)
+              costcell.textContent = totalcost[rows]['sum']
+              finalcost += totalcost[rows]['sum']
+          }            
+
+          
+      });
+
+
+      var fincostcontainer = document.createElement('div')
+      fincostcontainer.setAttribute('style','text-align:center;')
+      fincostcontainer.textContent = `Total :${finalcost+consultation}`
+
+      container.appendChild(table)
+      container.appendChild(fincostcontainer)
+      prevdatadiv.appendChild(container)
+
+  });
+
+}
+
+
+
 function getpatientdata(){
     const patientno = params.get('patientno')
     xhrobj = sendpost('/api/details',{'request':'refill','qry':patientno})

@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
-html,
-body {
+#root {
   background-color: #363062;
   color: #E9D5DA;
   font-family: "Nunito", sans-serif;
@@ -14,7 +13,7 @@ body {
 
 .header {
   align-self: center;
-  height: 42px;
+  height: 40px;
   width: 98%;
   background-color: #1c1934;
   opacity: 0.7;
@@ -36,31 +35,6 @@ body {
   background-color: #4f4c66;
 }
 
-#medslist {
-  align-self: center;
-  width: 98%;
-  padding: 10px;
-  border: 2px dotted #827397;
-}
-
-.head {
-  margin: 2%;
-  text-align: center;
-  border-bottom: 2px solid #E9D5DA;
-}
-
-.titem {
-  padding: 10px;
-  border: 2px solid #E9D5DA;
-  text-align: center;
-  border-radius: 5px;
-}
-
-.hitem {
-  padding: 10px;
-  text-align: center;
-}
-
 #overlay {
   position: fixed;
   width: 100%;
@@ -73,4 +47,4 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 2;
   cursor: pointer;
-}/*# sourceMappingURL=database.css.map */
+}/*# sourceMappingURL=index.css.map */

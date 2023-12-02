@@ -18,7 +18,6 @@ option {
   display: flex;
   font-size: 25px;
   border-bottom: 2px solid #E9D5DA;
-  width: -moz-max-content;
   width: max-content;
   margin: 20px;
 }
@@ -30,7 +29,6 @@ option {
 }
 #uppercontainer #date {
   width: 100px;
-  width: -moz-max-content;
   width: max-content;
 }
 
@@ -55,10 +53,8 @@ option {
 
 .container {
   width: 100%;
-  height: -moz-max-content;
   height: max-content;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   flex-basis: auto;
 }
@@ -67,9 +63,10 @@ option {
   font-family: "Nunito", sans-serif;
   color: #E9D5DA;
   font-size: 20px;
-  min-width: 550px;
   max-width: -moz-fit-content;
   max-width: fit-content;
+  display: flex;
+  flex-direction: column;
 }
 .details #patienttitle {
   padding-left: 15px;
@@ -77,11 +74,11 @@ option {
   color: #E9D5DA;
   font-size: 30px;
   border-bottom: 2px solid #E9D5DA;
-  width: -moz-max-content;
   width: max-content;
 }
 .details #basicparent {
   border: 2px solid #827397;
+  width: fit-content;
 }
 .details #genderdiv {
   display: flex;
@@ -113,14 +110,17 @@ option {
   border: 2px solid #827397;
 }
 
+.container0 {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+
 .container2 {
   border: 2px solid #827397;
   max-height: -moz-fit-content;
   max-height: fit-content;
-  width: 1300px;
-  margin-left: 15px;
-  display: flex;
-  flex-direction: column;
+  width: 70%;
 }
 
 #toggletitle {
@@ -160,7 +160,6 @@ option {
   align-self: center;
 }
 .bigbox .bigboxtitle {
-  width: -moz-max-content;
   width: max-content;
   padding-bottom: 5px;
   font-family: "Nunito", sans-serif;
@@ -193,7 +192,6 @@ option {
   left: 2%;
   font-size: 30px;
   border-bottom: 2px solid #E9D5DA;
-  width: -moz-max-content;
   width: max-content;
   padding: 5px;
 }

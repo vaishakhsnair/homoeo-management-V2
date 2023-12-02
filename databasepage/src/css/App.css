@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+.App {
+  text-align: center;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.overlay .overlay-content {
+  background-color: #1e1a39;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  height: max-content;
+  align-items: center;
+  width: 90%;
+}
+.overlay .overlay-content .overlay-close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  border-radius: 5px;
+  outline: 0;
+  border-color: transparent;
+  color: white;
+  background-color: #4f4c66;
+}
+.overlay .overlay-content .overlay-button-box {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 50%;
+}
+
+.overlay-title {
+  font-size: 30px;
+  margin: 10px;
+  color: #E9D5DA;
+  text-decoration: underline;
+}
+
+.overlay-content-container {
+  display: flex;
+  flex-direction: column;
+  width: 98%;
+  gap: 10px;
+}
+
+.overlay-input-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.overlay-input-fields {
+  background-color: transparent;
+  outline: 0;
+  border: 2px solid #827397;
+  color: #E9D5DA;
+  animation-duration: 0.5s;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 15px;
+}
+
+.overlay-submit-button {
+  width: 100px;
+  color: white;
+  background-color: #363062;
+  border: none;
+  border-radius: 3px;
+  height: 30px;
+  align-self: flex-end;
+  margin: 10px;
+}
+
+.search-input-batch {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}/*# sourceMappingURL=App.css.map */

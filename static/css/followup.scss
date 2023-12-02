@@ -28,6 +28,7 @@ body {
 #container0{
     display: flex;
     width: 100%;
+    flex-direction: row;
    // border:2px solid $primary;
 
 }
@@ -84,16 +85,13 @@ body {
 
 #prevdata{
     margin: 10px;
-    height: max-content;
     width: 98%;
+    height: 70vh; // half of visible window height minus margin
     border: 1px solid $primary;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-
-
-
+    overflow-y: scroll;
 }
 
 .prevdatacontainer {

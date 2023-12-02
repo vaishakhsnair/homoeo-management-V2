@@ -9,7 +9,6 @@ body {
 
 .titles {
   align-self: flex-start;
-  width: -moz-fit-content;
   width: fit-content;
   border-bottom: 2px solid #E9D5DA;
   font-size: 40px;
@@ -28,7 +27,6 @@ body {
 #searchcontainer > div {
   display: flex;
   align-items: center;
-  width: -moz-max-content;
   width: max-content;
 }
 

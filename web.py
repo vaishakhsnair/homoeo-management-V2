@@ -170,7 +170,7 @@ def api_handler(endpoint,request):
 
         if req['request'] == 'list':
             conn = dbhandle(True)
-            f = conn.execute('SELECT * FROM PATIENTS')
+            f = conn.execute('SELECT * FROM PATIENTS ORDER BY DATE DESC')
             f = [i for i in f]
 
             for i in range(len(f)):

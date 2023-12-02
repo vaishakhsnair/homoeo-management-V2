@@ -160,7 +160,7 @@ function fillprevdata(complaints){
 
     var prevdatadiv = document.getElementById('prevdata')
 
-    Object.keys(complaints).forEach(date => {
+    Object.keys(complaints).reverse().forEach(date => {
         var complaint = complaints[date]['complaintinput']
         var prescriptions = complaints[date]['prescriptions']   
 

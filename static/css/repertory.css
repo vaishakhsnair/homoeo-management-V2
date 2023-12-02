@@ -14,7 +14,6 @@ body {
 .titletext {
   font-size: 30px;
   border-bottom: 2px solid #E9D5DA;
-  width: -moz-fit-content;
   width: fit-content;
   padding-top: 5%;
 }

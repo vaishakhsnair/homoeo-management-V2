@@ -190,9 +190,16 @@ function fillprevdata(complaints){
         duplicatebt.textContent  = 'Duplicate'
 
         textcontainer.appendChild(duplicatebt)
-
-
         container.appendChild(textcontainer)
+        
+        if(complaints[date]['historyinput'] != null){
+            var historyData = document.createElement('div')
+            historyData.setAttribute('class','prevhistory')
+            historyData.textContent = `HPC : ${complaints[date]['historyinput']}`
+            container.appendChild(historyData)
+        }
+        
+
 
 
         var table = document.createElement('table')        
@@ -394,13 +401,14 @@ function sendFollowupData(){
     var complaint = document.getElementById('complaintinput').textContent
     var prescriptions = getprescriptions()
     const patientno = document.getElementById('patientno').innerText
+    const historycomplaint = document.getElementById('historyinput').textContent
     
     //var attach = handleattachmentsubmit()
     if (complaint.length === 0){
         alert("Required Field missing : Complaints ")
         return
     }
-    xhr = sendpost('/api/revisit',{'data':{'complaint':complaint,'prescription':prescriptions,'patientno':patientno,'totalcost':costtab}})
+    xhr = sendpost('/api/revisit',{'data':{'complaint':complaint,"complaintHistory":historycomplaint,'prescription':prescriptions,'patientno':patientno,'totalcost':costtab}})
     xhr.onload = function(){
         console.log(this.responseText)
         const resp  = JSON.parse(this.responseText)

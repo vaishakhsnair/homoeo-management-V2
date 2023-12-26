@@ -1,10 +1,10 @@
-import Table from './table';
+import DatabaseTable from './DatabaseTable';
 import Overlay,{MedSearchInputStuff} from './Overlay'
 import React, { useState } from 'react';
 import './css/dist/App.css';
 
 
-export default function App(){
+export default function DatabasePage(){
     const [showOverlay, setShowOverlay] = useState(false);
     const [overlayMode, setOverlayMode] = useState('');
     const [objEvent, setobjEvent] = useState('');
@@ -30,7 +30,7 @@ export default function App(){
       <div class="header">
         <button class="headerbt" onClick={handleButtonClick} id="addmeds">Add Meds</button>
       </div>
-      <Table editButtonClickAction = {handleButtonClick}/>
+      <DatabaseTable editButtonClickAction = {handleButtonClick}/>
       {showOverlay && <Overlay onClose={handleCloseOverlay} overlayMode={overlayMode} objEvent = {objEvent}/>}  
     </div>
   );

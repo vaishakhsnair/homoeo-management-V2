@@ -2,7 +2,7 @@ import './css/dist/table.css'
 import React, { useEffect, useState } from 'react';
 import Overlay from './Overlay'
 
-export default function Table({editButtonClickAction}){
+export default function DatabaseTable({editButtonClickAction}){
 
 
     const [data, setData] = useState({});

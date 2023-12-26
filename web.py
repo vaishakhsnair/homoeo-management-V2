@@ -246,6 +246,7 @@ def api_handler(endpoint,request):
             return jsonify({'status':'failed','error':'invalid request format'})
         
         complaint = req['data']['complaint']
+        history = req['data']['complaintHistory']
         patientno = req['data']['patientno']
         prescription = req['data']['prescription']
         totalcost = req['data']['totalcost']
@@ -261,9 +262,10 @@ def api_handler(endpoint,request):
                 date = date+'-'+str(len(f['complaints'].keys()))
             f['complaints'][date] = {}
             f['complaints'][date]['complaintinput'] = complaint
+            f['complaints'][date]['historyinput'] = history
             f['complaints'][date]['prescriptions']  = prescription
             f['complaints'][date]['totalcost'] = totalcost
-            print(f)
+            print(f['complaints'][date])
 
             new_data = json.dumps(f)
 

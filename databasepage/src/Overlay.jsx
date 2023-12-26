@@ -1,6 +1,6 @@
 
 import React, { useState,useEffect } from 'react';
-import { MedSearchInputStuff } from './table';
+import { MedSearchInputStuff } from './DatabaseTable';
 var NewStuff = {}
 
 

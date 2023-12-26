@@ -6,7 +6,6 @@ export default function MedsTable({data,setdata}) {
 
 
     const tableHeaders = ["Serial","Size","Medium","Meds","Dosage","cost","Count","Duplicate","Delete","Add"];
-
     const tableFrame = 
         <table className="table table-auto table-striped table-bordered border-separate border-spacing-1  w-4/5 self-center m-2 ">
             <thead>
@@ -14,16 +13,21 @@ export default function MedsTable({data,setdata}) {
                     {tableHeaders.map((header,index) => {
                         switch (header) {
                             case "Add":
-                                return <th key={index} className="border border-white rounded  border-spacing-1 ">
-                                    <button className="btn btn-primary w-full"  onClick={e => {
-                                        //add a new row to the table
-                                        var newdata = [...data,[newdata.length+1,"","",[],"","","","",""]]
-                                        setdata(newdata)
-                                        console.log("Before creation",data)
-                                    }}>Add Row</button>
-                                </th>
+                                return (
+                                    <th key={index} className="border border-white rounded  border-spacing-1 ">
+                                        <button className="btn btn-primary w-full" onClick={() => {
+                                            //add a new row to the table
+                                            var newdata = [...data, [data.length + 1, "", "", [], "", "", "", "", ""]];
+
+                                            setdata(newdata);
+                                            console.log("Before creation", newdata);
+                                        }}>
+                                            Add Row
+                                        </button>
+                                    </th>
+                                );
                             default:
-                                return <th key={index} className="border border-transparent  w-1/9">{header}</th>
+                                return <th key={index} className="border border-transparent  w-1/9">{header}</th>;
                         }
                     })}
                 </tr>

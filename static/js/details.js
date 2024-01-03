@@ -358,7 +358,7 @@ function fillprevdata(complaints){
 
     var prevdatadiv = document.getElementById('prevdata')
 
-    Object.keys(complaints).forEach(date => {
+    Object.keys(complaints).reverse().forEach(date => {
         var complaint = complaints[date]['complaintinput']
         if(complaint === undefined){
           complaint = 'Not available'
@@ -394,6 +394,16 @@ function fillprevdata(complaints){
 
 
         container.appendChild(textcontainer)
+
+
+        if(complaints[date]['historyinput'] != null){
+          var historyData = document.createElement('div')
+          historyData.setAttribute('class','prevhistory')
+          historyData.textContent = `HPC : ${complaints[date]['historyinput']}`
+          container.appendChild(historyData)
+      }
+      
+
 
 
         var table = document.createElement('table')        
@@ -723,4 +733,3 @@ function init(){
   }
   
   
-  init()

@@ -1,5 +1,4 @@
 
-
 const formdata = {
     "patientname":{label:"Name *"},
     "addr":{label:"Address *"},
@@ -23,7 +22,7 @@ const tablehtml = `
 
             </tr>`
 
-const biginputs = ["historyinput"]
+const biginputs = ["historyinput","repertoryinput"]
 const miniinputdivs = {"basicInfo":formdata}
 const extras = {hidden:false,divs :['familyhiscontainer','repertory','past','pershisdiv','generalitydiv','respto', 'regi'] }
 const primaryinfo = ["complaintinput","historyinput","basicInfo","gendersel"]
@@ -306,9 +305,11 @@ function refilldata(data){
                                 input.value = data[element][category]
                                 break
 
-                            case 'historyinput':
-                                input.innerText = data[element][category]
-                                break
+                            //case 'historyinput':
+                             //   input.innerText = data[element][category]
+                             //   break
+                            
+        
 
                            /* default:
                                 input.innerText = data[element][category]
@@ -322,7 +323,10 @@ function refilldata(data){
                 });
             
                 break
-
+            case 'optional':
+                const repertorydata = data[element]['repertoryinput']
+                document.getElementById('repertoryinput').innerText = repertorydata;
+                break;
             default:
                 break
                 
@@ -402,13 +406,15 @@ function sendFollowupData(){
     var prescriptions = getprescriptions()
     const patientno = document.getElementById('patientno').innerText
     const historycomplaint = document.getElementById('historyinput').textContent
+    const repertoryinput = document.getElementById('repertoryinput').textContent
+
     
     //var attach = handleattachmentsubmit()
     if (complaint.length === 0){
         alert("Required Field missing : Complaints ")
         return
     }
-    xhr = sendpost('/api/revisit',{'data':{'complaint':complaint,"complaintHistory":historycomplaint,'prescription':prescriptions,'patientno':patientno,'totalcost':costtab}})
+    xhr = sendpost('/api/revisit',{'data':{'complaint':complaint,"complaintHistory":historycomplaint,"repertoryData":repertoryinput,'prescription':prescriptions,'patientno':patientno,'totalcost':costtab}})
     xhr.onload = function(){
         console.log(this.responseText)
         const resp  = JSON.parse(this.responseText)

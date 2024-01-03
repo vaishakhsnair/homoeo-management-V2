@@ -249,6 +249,7 @@ def api_handler(endpoint,request):
         history = req['data']['complaintHistory']
         patientno = req['data']['patientno']
         prescription = req['data']['prescription']
+        repertory = req['data']['repertoryData']
         totalcost = req['data']['totalcost']
 
         conn = dbhandle(True)
@@ -265,6 +266,7 @@ def api_handler(endpoint,request):
             f['complaints'][date]['historyinput'] = history
             f['complaints'][date]['prescriptions']  = prescription
             f['complaints'][date]['totalcost'] = totalcost
+            f['optional']['repertoryinput'] = repertory
             print(f['complaints'][date])
 
             new_data = json.dumps(f)
@@ -441,6 +443,8 @@ def api_handler(endpoint,request):
 
                 if medium == 4:
                     unitrate = containerinfo[0]/len(serials['meds'])
+                if medium == 5: #for patents
+                    unitrate = 1
                 else:
                     unitrate = containerinfo[0]/5
                 
@@ -453,6 +457,11 @@ def api_handler(endpoint,request):
                 out = [n for n in out][0]
          
                 prim = (out[0]/(out[1]*out[3]))*unitrate
+
+
+                if medium == 5:
+                    prim = out[0] # This is for patents with fixed rate
+
                 cost = 1
                 cost += prim
                 if cost<10:

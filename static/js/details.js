@@ -517,7 +517,7 @@ function refilldata(data){
                              default:
                                 var tempvalues = data[element][category]
                                 if(tempvalues === null){
-                                  tempvalues = ''
+                                  tempvalues = 'Missing Data'
                                 }
                                 input.innerText = tempvalues
                                 break

@@ -515,7 +515,11 @@ function refilldata(data){
                                 input.value = data[element][category]
                                 break
                              default:
-                                input.innerText = `${data[element][category]}`
+                                var tempvalues = data[element][category]
+                                if(tempvalues === null){
+                                  tempvalues = ''
+                                }
+                                input.innerText = tempvalues
                                 break
                                 
 

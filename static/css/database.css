@@ -73,4 +73,9 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 2;
   cursor: pointer;
+}
+
+#nextvisitdate {
+  height: 20px;
+  margin: 20px;
 }/*# sourceMappingURL=database.css.map */

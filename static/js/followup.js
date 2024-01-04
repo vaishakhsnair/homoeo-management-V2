@@ -1,5 +1,4 @@
 
-
 const formdata = {
     "patientname":{label:"Name *"},
     "addr":{label:"Address *"},
@@ -23,7 +22,7 @@ const tablehtml = `
 
             </tr>`
 
-const biginputs = ["historyinput"]
+const biginputs = ["historyinput","repertoryinput"]
 const miniinputdivs = {"basicInfo":formdata}
 const extras = {hidden:false,divs :['familyhiscontainer','repertory','past','pershisdiv','generalitydiv','respto', 'regi'] }
 const primaryinfo = ["complaintinput","historyinput","basicInfo","gendersel"]
@@ -190,9 +189,16 @@ function fillprevdata(complaints){
         duplicatebt.textContent  = 'Duplicate'
 
         textcontainer.appendChild(duplicatebt)
-
-
         container.appendChild(textcontainer)
+        
+        if(complaints[date]['historyinput'] != null){
+            var historyData = document.createElement('div')
+            historyData.setAttribute('class','prevhistory')
+            historyData.textContent = `HPC : ${complaints[date]['historyinput']}`
+            container.appendChild(historyData)
+        }
+        
+
 
 
         var table = document.createElement('table')        
@@ -299,9 +305,11 @@ function refilldata(data){
                                 input.value = data[element][category]
                                 break
 
-                            case 'historyinput':
-                                input.innerText = data[element][category]
-                                break
+                            //case 'historyinput':
+                             //   input.innerText = data[element][category]
+                             //   break
+                            
+        
 
                            /* default:
                                 input.innerText = data[element][category]
@@ -315,7 +323,10 @@ function refilldata(data){
                 });
             
                 break
-
+            case 'optional':
+                const repertorydata = data[element]['repertoryinput']
+                document.getElementById('repertoryinput').innerText = repertorydata;
+                break;
             default:
                 break
                 
@@ -394,20 +405,28 @@ function sendFollowupData(){
     var complaint = document.getElementById('complaintinput').textContent
     var prescriptions = getprescriptions()
     const patientno = document.getElementById('patientno').innerText
+    const historycomplaint = document.getElementById('historyinput').textContent
+    const repertoryinput = document.getElementById('repertoryinput').textContent
+    const nextVisit = document.getElementById('nextvisitdate').value
+
+    if(nextVisit.length === 0){
+        alert("Required Field missing : Next Visit Date")
+        return
+    }
     
     //var attach = handleattachmentsubmit()
     if (complaint.length === 0){
         alert("Required Field missing : Complaints ")
         return
     }
-    xhr = sendpost('/api/revisit',{'data':{'complaint':complaint,'prescription':prescriptions,'patientno':patientno,'totalcost':costtab}})
+    xhr = sendpost('/api/revisit',{'data':{'complaint':complaint,"nextVisit":nextVisit,"complaintHistory":historycomplaint,"repertoryData":repertoryinput,'prescription':prescriptions,'patientno':patientno,'totalcost':costtab}})
     xhr.onload = function(){
         console.log(this.responseText)
         const resp  = JSON.parse(this.responseText)
         if(resp.status === 'success'){
 
             alert(`Data added successfully for ID:${PatientNum}`)
-            window.open(`/patients`,"_self")
+            window.open(`/`,"_self")
         }
     }
 }

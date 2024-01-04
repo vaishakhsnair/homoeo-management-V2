@@ -170,13 +170,21 @@ def api_handler(endpoint,request):
 
         if req['request'] == 'list':
             conn = dbhandle(True)
-            f = conn.execute('SELECT * FROM PATIENTS ORDER BY DATE DESC')
+            f = conn.execute('SELECT * FROM PATIENTS')
             f = [i for i in f]
 
             for i in range(len(f)):
                 f[i] = list(f[i])
                 f[i][4] = json.loads(f[i][4])
-            
+                if(f[i][4].get('nextVisitDate') == None or len(f[i][4]['nextVisitDate']) < 1):
+                    f[i].insert(4,'00-00-00')
+                else:
+                    #set date to dd-mm-yy format from yyyy-mm-dd
+                    nextdate = f[i][4]['nextVisitDate']
+                    nextdate = nextdate.split('-')
+                    nextdate = nextdate[2]+'-'+nextdate[1]+'-'+nextdate[0][2::]
+                    f[i].insert(4,nextdate)
+
             return jsonify({'data':f})
         
         if req['request'] == 'search':
@@ -246,8 +254,11 @@ def api_handler(endpoint,request):
             return jsonify({'status':'failed','error':'invalid request format'})
         
         complaint = req['data']['complaint']
+        history = req['data']['complaintHistory']
         patientno = req['data']['patientno']
         prescription = req['data']['prescription']
+        repertory = req['data']['repertoryData']
+        nextvisit = req['data']['nextVisit']
         totalcost = req['data']['totalcost']
 
         conn = dbhandle(True)
@@ -261,9 +272,12 @@ def api_handler(endpoint,request):
                 date = date+'-'+str(len(f['complaints'].keys()))
             f['complaints'][date] = {}
             f['complaints'][date]['complaintinput'] = complaint
+            f['complaints'][date]['historyinput'] = history
             f['complaints'][date]['prescriptions']  = prescription
             f['complaints'][date]['totalcost'] = totalcost
-            print(f)
+            f['optional']['repertoryinput'] = repertory
+            f['nextVisitDate'] = nextvisit
+            print(f['complaints'][date])
 
             new_data = json.dumps(f)
 
@@ -295,6 +309,10 @@ def api_handler(endpoint,request):
         f = conn.execute(f"SELECT DATA FROM PATIENTS WHERE PATIENTNO = '{patientno}'")
         f = [i for i in f][0][0]
         f = json.loads(f)
+
+        if(f.get('nextVisitDate') == None):
+            f['nextVisitDate'] = '00-00-00'
+
         for i in f.keys():
             if i in reusable.keys() and i != 'patientno':
                 f[i] = reusable[i]
@@ -302,6 +320,7 @@ def api_handler(endpoint,request):
             else:
                 reusable[i] = f[i]
             
+
         print(f)
 
         conn.execute(f"UPDATE PATIENTS SET DATA = '{json.dumps(f)}' WHERE PATIENTNO = '{patientno}'")
@@ -439,6 +458,8 @@ def api_handler(endpoint,request):
 
                 if medium == 4:
                     unitrate = containerinfo[0]/len(serials['meds'])
+                if medium == 5: #for patents
+                    unitrate = 1
                 else:
                     unitrate = containerinfo[0]/5
                 
@@ -451,6 +472,11 @@ def api_handler(endpoint,request):
                 out = [n for n in out][0]
          
                 prim = (out[0]/(out[1]*out[3]))*unitrate
+
+
+                if medium == 5:
+                    prim = out[0] # This is for patents with fixed rate
+
                 cost = 1
                 cost += prim
                 if cost<10:

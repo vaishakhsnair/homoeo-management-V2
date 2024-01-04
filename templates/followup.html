@@ -34,6 +34,11 @@
 
     <div id="container1">
 
+        <div id="nextvisit">
+            <p id="nextvisitTitle" class="bigboxtitle">Next Visit On</p>
+            <input type="date" name="nextvisit" id="nextvisitdate">
+        </div>
+
         <div id='presentingcomplaints'>
             <p id="complaintstitle" class="bigboxtitle">Presenting Complaints</p>
             <pre id="complaintinput" class="bigboxinput" contenteditable></pre>
@@ -41,8 +46,14 @@
     
         <div id="history" class="history">
             <p id="historytitle" class="bigboxtitle">History of Presenting Complaints</p>
-            <pre id="historyinput" class="bigboxinput" ></pre>
+            <pre id="historyinput" class="bigboxinput" contenteditable ></pre>
         </div>
+
+        <div id="repertory">
+            <p id="repertorytitle" class="bigboxtitle">Repertorization</p>
+            <pre id="repertoryinput" class="bigboxinput" contenteditable></pre>
+        </div>
+
 
         <div class="bigbox">
             <p class="bigboxtitle">Attachments</p>
@@ -77,7 +88,6 @@
     
 </body>
 <script src="/static/js/attach.js"></script>
-
 <script src="/static/js/followup.js"></script>
 <script src="/static/js/table.js"></script>
 

@@ -4,12 +4,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useBetween } from "use-between";
 
-export var SortToggleStatus = {"id":0,"name":0,"phone":0,"date":0} //index:state 0-unchanged , 1 - asc ,-1 desc
+export var SortToggleStatus = {"id":0,"name":0,"phone":0,"date":0,'nextvisit':0} //index:state 0-unchanged , 1 - asc ,-1 desc
 export const columns = [
   { label: "ID", accessor: "id", sortable: true },
   { label: "Name", accessor: "name", sortable: true },
   { label: "Phone", accessor: "phone", sortable: true },
   { label: "Date", accessor: "date", sortable: true },
+  { label: "Next Visit On", accessor: "nextvisit", sortable: true },
   { label: "Options", accessor: "options", sortable: false },
 ];
 
@@ -60,7 +61,7 @@ function handlesortClick(accessor) {
   console.log(accessor);
   var ItemToSortObject = {};
   currentData.forEach((element) => {
-    if (accessor === "date") {
+    if (accessor === "date" || accessor === "nextvisit") {
       var isodate = element[IndexOfItemToSort].split("-").reverse();
       isodate[0] = `20${isodate[0]}`;
       isodate = isodate.join("-");
@@ -80,7 +81,7 @@ function handlesortClick(accessor) {
   var orderedkeys;
   switch (SortToggleStatus[accessor]) {
     case 0:
-      if (accessor === "date") {
+      if (accessor === "date"  || accessor === "nextvisit") {
         orderedkeys = Object.keys(ItemToSortObject).sort(function (a, b) {
           return new Date(a) - new Date(b);
         });
@@ -91,7 +92,7 @@ function handlesortClick(accessor) {
       SortToggleStatus[accessor] = 1;
       break;
     case 1:
-      if (accessor === "date") {
+      if (accessor === "date"  || accessor === "nextvisit") {
         orderedkeys = Object.keys(ItemToSortObject).sort(function (a, b) {
           return new Date(b) - new Date(a);
         });
@@ -102,7 +103,7 @@ function handlesortClick(accessor) {
       SortToggleStatus[accessor] = -1;
       break;
     case -1:
-      if (accessor === "date") {
+      if (accessor === "date"  || accessor === "nextvisit") {
         orderedkeys = Object.keys(ItemToSortObject).sort(function (a, b) {
           return new Date(a) - new Date(b);
         });
@@ -128,7 +129,7 @@ function fillTablewithData(datatree,setdata){
   if(datatree === ""){
     return 
   }
-
+  console.log(datatree)
   const search_stuff = <div className='searchstuff'>
                           <div className='searchtext'>Search :</div>
                           <input onChange={e=>{
@@ -150,13 +151,15 @@ function fillTablewithData(datatree,setdata){
             
             );
         
-
+  
   const contents = datatree.map((items) =>
             <tr className='tablerow'>
               {items.slice(0,4).map((columns)=>
                 <td className='column'>{columns}</td>
               )}
 
+              {items[4] === "00-00-00" ? <td className='column'>Not Set</td> : <td className='column'>{items[4]}</td>}
+               
                 <td className='column'>
                   <div className='optionsbtbox'>
                   <button className='optionsbts' onClick={() => openInNewTab(`/followup?patientno=${items[0]}`)}> Follow Up</button>

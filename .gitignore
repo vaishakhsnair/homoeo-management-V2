@@ -45,3 +45,4 @@ main.*.js.map
 *.LICENSE.txt
 main.*.css.map
 main.*.css
+*.code-workspace

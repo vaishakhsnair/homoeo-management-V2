@@ -358,7 +358,7 @@ function fillprevdata(complaints){
 
     var prevdatadiv = document.getElementById('prevdata')
 
-    Object.keys(complaints).forEach(date => {
+    Object.keys(complaints).reverse().forEach(date => {
         var complaint = complaints[date]['complaintinput']
         if(complaint === undefined){
           complaint = 'Not available'
@@ -394,6 +394,16 @@ function fillprevdata(complaints){
 
 
         container.appendChild(textcontainer)
+
+
+        if(complaints[date]['historyinput'] != null){
+          var historyData = document.createElement('div')
+          historyData.setAttribute('class','prevhistory')
+          historyData.textContent = `HPC : ${complaints[date]['historyinput']}`
+          container.appendChild(historyData)
+      }
+      
+
 
 
         var table = document.createElement('table')        
@@ -505,7 +515,11 @@ function refilldata(data){
                                 input.value = data[element][category]
                                 break
                              default:
-                                input.innerText = data[element][category]
+                                var tempvalues = data[element][category]
+                                if(tempvalues === null){
+                                  tempvalues = 'Missing Data'
+                                }
+                                input.innerText = tempvalues
                                 break
                                 
 
@@ -517,11 +531,15 @@ function refilldata(data){
                 break
                 
             case 'prescriptions':
-
+                break;
             
             
         }
     });
+
+
+    const nextvisitdate = document.getElementById('nextvisitdate')
+    nextvisitdate.value = data['nextVisitDate']
 }
 
 
@@ -617,10 +635,6 @@ function sendall(){
       }
       
       }
-    
-  
-  
-  
   
     }
   
@@ -628,14 +642,16 @@ function sendall(){
     //inputcontents['complaints'][date]['prescriptions'] = 
     //inputcontents['complaints'][date]['prescriptions'] = prescriptions
   
+    inputcontents['nextVisitDate'] = document.getElementById('nextvisitdate').value
     console.log(JSON.stringify(inputcontents))
+
     respobj =  sendpost('/api/miscdata',inputcontents)
     respobj.onload = function(){
       console.log(this.responseText)
       const resp = JSON.parse(this.responseText)
       if (resp.status === 'success'){
         alert('Details updated successfully')
-        window.open(`/patients`,"_self")
+        window.open(`/`,"_self")
       }else{
         sendError('server')
       }
@@ -723,4 +739,3 @@ function init(){
   }
   
   
-  init()

@@ -87,7 +87,7 @@ body {
 }
 
 .prevtextdate {
-  text-align: center;
+  text-align: left;
   display: table-cell;
 }
 
@@ -95,6 +95,14 @@ body {
   display: table-cell;
   height: max-content;
   padding-left: 2px;
+}
+
+.prevhistory {
+  display: flex;
+  width: 98%;
+  font-size: 20px;
+  align-self: flex-start;
+  margin-left: 10px;
 }
 
 .prevdatacell {
@@ -150,6 +158,11 @@ td {
   font-family: "Nunito", sans-serif;
   font-size: 20px;
   max-width: 100%;
+}
+
+#nextvisitdate {
+  height: 20px;
+  margin: 20px;
 }
 
 #tablediv {

@@ -64,7 +64,13 @@
     </div>
 
     <div class="bigbox">
-        <div id="history" class="history">
+        
+        <div id="nextvisit">
+            <p id="nextvisitTitle" class="bigboxtitle">Next Visit On</p>
+            <input type="date" name="nextvisit" id="nextvisitdate">
+        </div>
+        
+        <div id="history" class="history" hidden>
             <p id="historytitle" class="bigboxtitle">History of Presenting Complaints</p>
             <pre id="historyinput" class="bigboxinput" contenteditable></pre>
         </div>
@@ -123,6 +129,9 @@
 <script src="/static/js/details.js"></script>
 <script src="/static/js/table.js">
        //using this html as template so startup script is from server side
+</script>
+<script>
+    init()
 </script>
 
 </body>

@@ -631,10 +631,6 @@ function sendall(){
       }
       
       }
-    
-  
-  
-  
   
     }
   
@@ -642,14 +638,16 @@ function sendall(){
     //inputcontents['complaints'][date]['prescriptions'] = 
     //inputcontents['complaints'][date]['prescriptions'] = prescriptions
   
+    inputcontents['nextVisitDate'] = document.getElementById('nextvisitdate').value
     console.log(JSON.stringify(inputcontents))
+
     respobj =  sendpost('/api/miscdata',inputcontents)
     respobj.onload = function(){
       console.log(this.responseText)
       const resp = JSON.parse(this.responseText)
       if (resp.status === 'success'){
         alert('Details updated successfully')
-        window.open(`/patients`,"_self")
+        window.open(`/`,"_self")
       }else{
         sendError('server')
       }

@@ -407,21 +407,21 @@ function sendFollowupData(){
     const patientno = document.getElementById('patientno').innerText
     const historycomplaint = document.getElementById('historyinput').textContent
     const repertoryinput = document.getElementById('repertoryinput').textContent
-
+    const nextVisit = document.getElementById('nextvisitdate').value
     
     //var attach = handleattachmentsubmit()
     if (complaint.length === 0){
         alert("Required Field missing : Complaints ")
         return
     }
-    xhr = sendpost('/api/revisit',{'data':{'complaint':complaint,"complaintHistory":historycomplaint,"repertoryData":repertoryinput,'prescription':prescriptions,'patientno':patientno,'totalcost':costtab}})
+    xhr = sendpost('/api/revisit',{'data':{'complaint':complaint,"nextVisit":nextVisit,"complaintHistory":historycomplaint,"repertoryData":repertoryinput,'prescription':prescriptions,'patientno':patientno,'totalcost':costtab}})
     xhr.onload = function(){
         console.log(this.responseText)
         const resp  = JSON.parse(this.responseText)
         if(resp.status === 'success'){
 
             alert(`Data added successfully for ID:${PatientNum}`)
-            window.open(`/patients`,"_self")
+            window.open(`/`,"_self")
         }
     }
 }

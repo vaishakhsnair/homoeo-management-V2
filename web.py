@@ -170,13 +170,21 @@ def api_handler(endpoint,request):
 
         if req['request'] == 'list':
             conn = dbhandle(True)
-            f = conn.execute('SELECT * FROM PATIENTS ORDER BY DATE DESC')
+            f = conn.execute('SELECT * FROM PATIENTS')
             f = [i for i in f]
 
             for i in range(len(f)):
                 f[i] = list(f[i])
                 f[i][4] = json.loads(f[i][4])
-            
+                if(f[i][4].get('nextVisitDate') == None):
+                    f[i].insert(4,'00-00-00')
+                else:
+                    #set date to dd-mm-yy format from yyyy-mm-dd
+                    nextdate = f[i][4]['nextVisitDate']
+                    nextdate = nextdate.split('-')
+                    nextdate = nextdate[2]+'-'+nextdate[1]+'-'+nextdate[0][2::]
+                    f[i].insert(4,nextdate)
+
             return jsonify({'data':f})
         
         if req['request'] == 'search':
@@ -250,6 +258,7 @@ def api_handler(endpoint,request):
         patientno = req['data']['patientno']
         prescription = req['data']['prescription']
         repertory = req['data']['repertoryData']
+        nextvisit = req['data']['nextVisit']
         totalcost = req['data']['totalcost']
 
         conn = dbhandle(True)
@@ -267,6 +276,7 @@ def api_handler(endpoint,request):
             f['complaints'][date]['prescriptions']  = prescription
             f['complaints'][date]['totalcost'] = totalcost
             f['optional']['repertoryinput'] = repertory
+            f['nextVisitDate'] = nextvisit
             print(f['complaints'][date])
 
             new_data = json.dumps(f)

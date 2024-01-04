@@ -160,6 +160,11 @@ td {
   max-width: 100%;
 }
 
+#nextvisitdate {
+  height: 20px;
+  margin: 20px;
+}
+
 #tablediv {
   margin-top: 10px;
   display: flex;

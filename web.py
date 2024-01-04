@@ -309,6 +309,10 @@ def api_handler(endpoint,request):
         f = conn.execute(f"SELECT DATA FROM PATIENTS WHERE PATIENTNO = '{patientno}'")
         f = [i for i in f][0][0]
         f = json.loads(f)
+
+        if(f.get('nextVisitDate') == None):
+            f['nextVisitDate'] = '00-00-00'
+
         for i in f.keys():
             if i in reusable.keys() and i != 'patientno':
                 f[i] = reusable[i]
@@ -316,6 +320,7 @@ def api_handler(endpoint,request):
             else:
                 reusable[i] = f[i]
             
+
         print(f)
 
         conn.execute(f"UPDATE PATIENTS SET DATA = '{json.dumps(f)}' WHERE PATIENTNO = '{patientno}'")

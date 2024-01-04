@@ -531,11 +531,15 @@ function refilldata(data){
                 break
                 
             case 'prescriptions':
-
+                break;
             
             
         }
     });
+
+
+    const nextvisitdate = document.getElementById('nextvisitdate')
+    nextvisitdate.value = data['nextVisitDate']
 }
 
 

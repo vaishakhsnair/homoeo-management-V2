@@ -176,7 +176,7 @@ def api_handler(endpoint,request):
             for i in range(len(f)):
                 f[i] = list(f[i])
                 f[i][4] = json.loads(f[i][4])
-                if(f[i][4].get('nextVisitDate') == None):
+                if(f[i][4].get('nextVisitDate') == None or len(f[i][4]['nextVisitDate']) < 1):
                     f[i].insert(4,'00-00-00')
                 else:
                     #set date to dd-mm-yy format from yyyy-mm-dd

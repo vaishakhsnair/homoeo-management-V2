@@ -408,6 +408,11 @@ function sendFollowupData(){
     const historycomplaint = document.getElementById('historyinput').textContent
     const repertoryinput = document.getElementById('repertoryinput').textContent
     const nextVisit = document.getElementById('nextvisitdate').value
+
+    if(nextVisit.length === 0){
+        alert("Required Field missing : Next Visit Date")
+        return
+    }
     
     //var attach = handleattachmentsubmit()
     if (complaint.length === 0){

@@ -192,15 +192,22 @@ function fillprevdata(complaints){
         container.appendChild(textcontainer)
         
         if(complaints[date]['historyinput'] != null){
+            var hpc = document.createElement('div')
+            hpc.setAttribute('class','hpcontainer')
+
             var historytitle = document.createElement('p')
             historytitle.setAttribute('class','prevhistorytitle')
             historytitle.textContent = 'HPC :'
 
-            var historyData = document.createElement('pre')
-            historyData.setAttribute('class','prevhistory')
-            historyData.textContent = `${complaints[date]['historyinput']}`
-            container.appendChild(historytitle)
-            container.appendChild(historyData)
+            var historyData = document.createElement('div');
+            historyData.setAttribute('class', 'bigboxinput');
+            const textcontent = complaints[date]['historyinput'];
+            console.log(textcontent);
+            historyData.innerText = textcontent;
+            hpc.appendChild(historytitle);
+            hpc.appendChild(historyData);
+            container.appendChild(hpc)
+
         }
         
 

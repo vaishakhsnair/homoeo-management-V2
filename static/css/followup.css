@@ -97,14 +97,29 @@ body {
   padding-left: 2px;
 }
 
+.hpcontainer {
+  display: flex;
+  flex-direction: column;
+  width: 98%;
+  margin: 10px;
+  border: 1px solid #E9D5DA;
+  height: max-content;
+}
+
 .prevhistory {
   display: flex;
   width: 98%;
   font-size: 18px;
   align-self: flex-start;
   margin-left: 10px;
-  height: 30%;
   margin-top: -5px;
+  min-height: fit-content;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  margin-bottom: 5px;
+  overflow-y: scroll;
+  height: max-content;
 }
 
 .prevhistorytitle {

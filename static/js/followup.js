@@ -192,9 +192,14 @@ function fillprevdata(complaints){
         container.appendChild(textcontainer)
         
         if(complaints[date]['historyinput'] != null){
-            var historyData = document.createElement('div')
+            var historytitle = document.createElement('p')
+            historytitle.setAttribute('class','prevhistorytitle')
+            historytitle.textContent = 'HPC :'
+
+            var historyData = document.createElement('pre')
             historyData.setAttribute('class','prevhistory')
-            historyData.textContent = `HPC : ${complaints[date]['historyinput']}`
+            historyData.textContent = `${complaints[date]['historyinput']}`
+            container.appendChild(historytitle)
             container.appendChild(historyData)
         }
         

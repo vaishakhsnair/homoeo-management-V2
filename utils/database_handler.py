@@ -114,10 +114,10 @@ class patient_db_handle:
     def search_patient(self):
         content = self.request.get_json()
         search = content['qry']
-        f = self.db.execute(f"SELECT * FROM PATIENTS WHERE PATIENTNO LIKE '{search}' 
+        f = self.db.execute(f'''SELECT * FROM PATIENTS WHERE PATIENTNO LIKE '{search}' 
                             OR NAME LIKE '{search}'
                             OR CONTACT LIKE '{search}'
-                            OR DATE LIKE '{search}' ")
+                            OR DATE LIKE '{search}' ''')
         f = [i for i in f][0]
         return jsonify({'data':f})
 

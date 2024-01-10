@@ -319,13 +319,8 @@ def api_handler(endpoint,request):
 
             else:
                 reusable[i] = f[i]
-            
-
-        print(f)
 
         conn.execute(f"UPDATE PATIENTS SET DATA = '{json.dumps(f)}' WHERE PATIENTNO = '{patientno}'")
-        
-
         f = conn.execute(f"SELECT DATA FROM PATIENTS WHERE PATIENTNO = '{patientno}'")
         f = [i for i in f][0][0]
         f = json.loads(f)
@@ -334,18 +329,10 @@ def api_handler(endpoint,request):
             #conn.execute(f"UPDATE PATIENTS SET DATE = '{get_date()}' WHERE PATIENTNO = '{patientno}'  ")
             conn.execute(f"UPDATE PATIENTS SET CONTACT = '{f['primary']['basicInfo']['phoneno']}' WHERE PATIENTNO = '{patientno}'")
             conn.execute(f"UPDATE PATIENTS SET NAME = '{f['primary']['basicInfo']['patientname']}' WHERE PATIENTNO = '{patientno}'")
-
-
             conn.commit()
-
-            
             return jsonify({'status':'success','message':'records added successfully'})
-
-        
         else:
             return jsonify({'status':'failed','error':'server error data mismatch'})
-
-        #return jsonify({'status':'failed'})
 
     if endpoint == 'attachments':
         if request.method == 'POST':

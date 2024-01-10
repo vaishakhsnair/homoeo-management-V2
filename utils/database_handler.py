@@ -1,7 +1,10 @@
 
+import os
 import sqlite3
 import datetime
 import json
+from werkzeug.utils import secure_filename
+from werkzeug.security import safe_join
 
 from flask import jsonify
 def dbhandle(dbname=False,version = 1.0):
@@ -95,10 +98,36 @@ class patient_db_handle:
         for i in range(len(contents)):
             contents[i] = list(contents[i])
             contents[i][4] = json.loads(contents[i][4])
+            if(contents[i][4].get('nextVisitDate') == None or len(contents[i][4]['nextVisitDate']) < 1):
+                contents[i][4]['nextVisitDate'] = 'Not Scheduled'
+            else:
+                #set date to dd-mm-yy format from yyyy-mm-dd
+                nextdate = contents[i][4]['nextVisitDate']
+                nextdate = nextdate.split('-')
+                nextdate = nextdate[2]+'-'+nextdate[1]+'-'+nextdate[0][2::]
+                contents[i].insert(4,nextdate)               
+     
         
         return jsonify({'data':contents})
 
 
+    def search_patient(self):
+        content = self.request.get_json()
+        search = content['qry']
+        f = self.db.execute(f"SELECT * FROM PATIENTS WHERE PATIENTNO LIKE '{search}' 
+                            OR NAME LIKE '{search}'
+                            OR CONTACT LIKE '{search}'
+                            OR DATE LIKE '{search}' ")
+        f = [i for i in f][0]
+        return jsonify({'data':f})
+
+
+    def get_patient_details(self):
+        content = self.request.get_json()
+        patientnum = content['qry']
+        f = self.db.execute(f"SELECT * FROM PATIENTS WHERE PATIENTNO = '{patientnum}'")
+        f = [i for i in f][0]
+        return json.dumps({'data':f,'status':'success'})
 
 
     def check_patientnum(self,patientnum):
@@ -116,6 +145,96 @@ class patient_db_handle:
         else:
             return patientnum
 
+    def patient_followup(self):
+        req = self.request.get_json()
+
+        if 'data' not in req.keys():
+            return jsonify({'status':'failed','error':'invalid request format'})
+        
+        complaint = req['data']['complaint']
+        history = req['data']['complaintHistory']
+        patientno = req['data']['patientno']
+        prescription = req['data']['prescription']
+        repertory = req['data']['repertoryData']
+        nextvisit = req['data']['nextVisit']
+        totalcost = req['data']['totalcost']
+
+        conn = dbhandle(True)
+
+        f = conn.execute(f"SELECT DATA FROM PATIENTS WHERE PATIENTNO = '{patientno}'")
+        f = [i for i in f][0][0]
+        if len(f)>0:
+            f = json.loads(f)
+            date = datetime.datetime.today().date().strftime("%d-%m-%y")
+            if date in f['complaints'].keys():
+                date = date+'-'+str(len(f['complaints'].keys()))
+            f['complaints'][date] = {}
+            f['complaints'][date]['complaintinput'] = complaint
+            f['complaints'][date]['historyinput'] = history
+            f['complaints'][date]['prescriptions']  = prescription
+            f['complaints'][date]['totalcost'] = totalcost
+            f['optional']['repertoryinput'] = repertory
+            f['nextVisitDate'] = nextvisit
+            print(f['complaints'][date])
+
+            new_data = json.dumps(f)
+
+            sql = f'''UPDATE PATIENTS SET DATA = '{new_data}' 
+                        WHERE PATIENTNO = "{patientno}"  '''
+
+            conn.execute(sql)
+
+
+            f = conn.execute(f"SELECT DATA FROM PATIENTS WHERE PATIENTNO = '{patientno}'")
+            f = [i for i in f][0][0]
+            if new_data == f:
+                
+                conn.execute(f"UPDATE PATIENTS SET DATE = '{date}' WHERE PATIENTNO = '{patientno}'  ")
+                conn.commit()
+                
+                return jsonify({'status':'success','message':'records added successfully'})
+
+            
+            else:
+                return jsonify({'status':'failed','error':'server error data mismatch'})
+
+        else:
+            return jsonify({'status':'failed','error':'invalid patient number'})
+        
+    def update_patient_details(self):
+        req = self.request.get_json()
+
+        if 'data' not in req.keys():
+            return jsonify({'status':'failed','error':'invalid request format'})
+        
+        patientno = req['patientno']
+        conn = dbhandle(True)
+
+        f = conn.execute(f"SELECT DATA FROM PATIENTS WHERE PATIENTNO = '{patientno}'")
+        f = [i for i in f][0][0]
+        if len(f)>0:
+
+            if(f.get('nextVisitDate') == None):
+                f['nextVisitDate'] = '00-00-00'
+
+            for i in f.keys():
+                if i in req.keys() and i != 'patientno':
+                    f[i] = req[i]
+
+                else:
+                    req[i] = f[i]
+            
+            conn.execute(f"UPDATE PATIENTS SET DATA = '{json.dumps(f)}' WHERE PATIENTNO = '{patientno}'  ")
+
+            f = conn.execute(f"SELECT DATA FROM PATIENTS WHERE PATIENTNO = '{patientno}'")
+            f = [i for i in f][0][0]
+            if req == f:
+                conn.commit()
+                return jsonify({'status':'success','message':'records added successfully'})
+            else:
+                return jsonify({'status':'failed','error':'server error data mismatch'})
+        else:
+            return jsonify({'status':'failed','error':'invalid patient number'})
 
 
     def get_patientnum(self):
@@ -139,8 +258,8 @@ class patient_db_handle:
     def add_new_patient(self, data):
         new_num = self.get_patientnum()
         print(new_num)
-        name = data['basicDetails']['name']
-        contact = data['basicDetails']['phone']
+        name = data['primary']['basicInfo']['patientname']
+        contact = data['primary']['basicInfo']['phoneno']
         date = datetime.datetime.today().date().strftime("%d-%m-%y")
         self.db.execute(f"INSERT INTO PATIENTS VALUES ('{new_num}','{name}','{contact}','{date}','{json.dumps(data)}')")
         f = self.db.execute(f"SELECT * FROM PATIENTS WHERE PATIENTNO = '{new_num}'")
@@ -150,8 +269,5 @@ class patient_db_handle:
             print("Added")
             self.db.commit()      
             return jsonify({'status':'success','patientnum':new_num})
-
-    def get_patient_details(self,patientnum):
-        f = self.db.execute(f"SELECT * FROM PATIENTS WHERE PATIENTNO = '{patientnum}'")
-        f = [i for i in f][0]
-        return json.dumps({'data':f,'status':'success'})
+        else:
+            return jsonify({'status':'failed, Mismatched Data','patientnum':new_num})

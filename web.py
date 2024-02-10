@@ -440,25 +440,23 @@ def api_handler(endpoint,request):
                 
                 mediumrate = [o for o in out][0][0]
                 allcost += mediumrate
-                print('Medium Cost :',mediumrate)
                 allrates['medium'] = mediumrate
 
                 if medium == 4:
                     unitrate = containerinfo[0]/len(serials['meds'])
-                if medium == 5: #for patents
+                elif medium == 5: #for patents
                     unitrate = 1
                 else:
                     unitrate = containerinfo[0]/5
                 
 
             medrates = []
-
             for i in serials['meds']:
                 qry = f"SELECT RATE,QTY,NAME,STOCK FROM {askers['meds']['table']} WHERE SERIAL = {i}"
                 out = conn.execute(qry)
                 out = [n for n in out][0]
          
-                prim = (out[0]/(out[1]*out[3]))*unitrate
+                prim = (out[0]/(out[1]))*unitrate
 
 
                 if medium == 5:
